@@ -19,7 +19,7 @@ import random
 import re
 import subprocess
 import sys
-import time
+import timeq
 from pathlib import Path
 from typing import Any
 
