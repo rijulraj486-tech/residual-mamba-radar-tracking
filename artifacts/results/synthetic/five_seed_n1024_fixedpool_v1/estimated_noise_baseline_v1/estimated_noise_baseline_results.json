@@ -1,0 +1,1203 @@
+{
+  "configuration_name": "estimated_QR_train_only",
+  "evaluation": {
+    "P0_source": "same exact legacy/calibrated P0 and first-observation cross covariance from Task 3A",
+    "device": "CPU",
+    "dt": 1.0,
+    "metric_function": "experiments/five_seed_harness.py:calculate_metrics",
+    "sequence_length": 100,
+    "state_order": [
+      "x",
+      "vx",
+      "ax",
+      "y",
+      "vy",
+      "ay"
+    ],
+    "state_scale": 1000.0,
+    "test_count": 1024
+  },
+  "evaluation_timestamp_utc": "2026-11-26T17:30:40.981869+00:00",
+  "fixed_test": {
+    "fixed_test_path": "/home/spcom41/BiMambaTracker/radar-tracking/artifacts/results/synthetic/fixed_test_comparison_01/shared_test.pt",
+    "fixed_test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2",
+    "fixed_test_tensor_sha256": {
+      "initial_state": "272768908d91da0bbbf1c01e52d58389123864276c01516ce9caac2d74fe9982",
+      "measurement_noise": "1bd7ea8e5aec2ae020d98f090f3be6a5286f63053fc929347faa8a55eee3485d",
+      "observations": "bf3509cd2cfafd719d03bc64ae650516297d63017603ee38d24ea102258215de",
+      "process_noise": "fcc83a02de0f3125ce2423f79cd59cbc6c9d43dedc1ed49da7df86843d6eb8f2",
+      "true_state": "0024478e1e818f4d48308a7713394a106ec4f2fba80f558df1e5dc4ccdc2b4cb"
+    },
+    "training_file_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "training_manifest_sha256": "56caaf4a893c1dff07ec5d808f13d3bcd570c360c60c339aa82745df03a46b95",
+    "training_path": "/home/spcom41/BiMambaTracker/radar-tracking/artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "training_tensor_sha256": {
+      "initial_state": "381b74fa88836817f72ba21499af29b4921d0dcbcd8c5195ab5fb4db4503edef",
+      "observations": "8069d8b02e6c6a06f9c420eafa0ce3a445fd9007a2b85bed66adcba73a60c91f",
+      "state": "332c2764a958b36aa588ed6595d1e29cc3e5bcf038f5db540532f507e46d9f3d"
+    }
+  },
+  "format_version": 1,
+  "frozen_estimator_configuration": {
+    "estimation_formula": "centered unbiased sample covariance of transition/measurement residuals; selected Q projected onto shared integrated-white-jerk CA covariance; selected R diagonal",
+    "information_boundary": "Estimator received only train state and train observations; the fixed test file was opened only after the estimate was frozen. The serialized fixed-pool container includes validation tensors and torch.load deserializes the container as a whole, but the split extractor accesses and verifies only train keys; validation tensors are not inspected, hashed, or passed to estimation.",
+    "measurement_residual_sample_count": 81900,
+    "name": "estimated_QR_train_only",
+    "oracle_comparison": {
+      "Q_relative_frobenius_error": 0.0030401471897661,
+      "R_diagonal_relative_error": [
+        -0.006885026709347097,
+        0.006481438551073415
+      ],
+      "R_raw_range_bearing_correlation": -0.0006691191939721472,
+      "significant_discrepancy": false,
+      "significant_discrepancy_threshold": "5% relative Frobenius error for Q or absolute relative diagonal variance error for R"
+    },
+    "process_residual_sample_count": 81081,
+    "process_transition_count": 81081,
+    "simulator_oracle_Q": [
+      [
+        5.000000058430487e-08,
+        1.2499999968440534e-07,
+        1.6666666624587378e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.2499999968440534e-07,
+        3.3333333249174757e-07,
+        4.999999987376214e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.6666666624587378e-07,
+        4.999999987376214e-07,
+        9.999999974752427e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        5.000000058430487e-08,
+        1.2499999968440534e-07,
+        1.6666666624587378e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.2499999968440534e-07,
+        3.3333333249174757e-07,
+        4.999999987376214e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.6666666624587378e-07,
+        4.999999987376214e-07,
+        9.999999974752427e-07
+      ]
+    ],
+    "simulator_oracle_R": [
+      [
+        0.0009,
+        0.0
+      ],
+      [
+        0.0,
+        0.00030461741978670857
+      ]
+    ],
+    "state_observation_count": 81900,
+    "training_estimates": {
+      "estimator_name": "estimated_QR_train_only",
+      "measurement_covariance_diagonal": [
+        [
+          0.0008938034759615876,
+          0.0
+        ],
+        [
+          0.0,
+          0.00030659177887464267
+        ]
+      ],
+      "measurement_covariance_final": [
+        [
+          0.0008938034759615876,
+          0.0
+        ],
+        [
+          0.0,
+          0.00030659177887464267
+        ]
+      ],
+      "measurement_covariance_min_eigenvalue": 0.00030659177887464267,
+      "measurement_residual_bias": [
+        7.417926716415303e-05,
+        4.319339749284188e-05
+      ],
+      "measurement_residual_covariance_full": [
+        [
+          0.0008938034759616024,
+          -3.5027146617676254e-07
+        ],
+        [
+          -3.5027146617676254e-07,
+          0.00030659177887464213
+        ]
+      ],
+      "measurement_residual_sample_count": 81900,
+      "method": "centered unbiased sample covariance of transition/measurement residuals; selected Q projected onto shared integrated-white-jerk CA covariance; selected R diagonal",
+      "observation_units": "range km, bearing rad",
+      "process_covariance_final": [
+        [
+          4.9847992515699104e-08,
+          1.2461998128924775e-07,
+          1.6615997505233032e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.2461998128924775e-07,
+          3.3231995010466064e-07,
+          4.98479925156991e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.6615997505233032e-07,
+          4.98479925156991e-07,
+          9.96959850313982e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.9847992515699104e-08,
+          1.2461998128924775e-07,
+          1.6615997505233032e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.2461998128924775e-07,
+          3.3231995010466064e-07,
+          4.98479925156991e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.6615997505233032e-07,
+          4.98479925156991e-07,
+          9.96959850313982e-07
+        ]
+      ],
+      "process_covariance_min_eigenvalue": 1.0981605700503556e-09,
+      "process_covariance_shared_block": [
+        [
+          4.97465726391853e-08,
+          1.2448301464002094e-07,
+          1.6646023237878182e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.2448301464002094e-07,
+          3.3228344986648154e-07,
+          4.998201750422598e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.6646023237878182e-07,
+          4.998201750422598e-07,
+          1.001613348307562e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.97465726391853e-08,
+          1.2448301464002094e-07,
+          1.6646023237878182e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.2448301464002094e-07,
+          3.3228344986648154e-07,
+          4.998201750422598e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.6646023237878182e-07,
+          4.998201750422598e-07,
+          1.001613348307562e-06
+        ]
+      ],
+      "process_covariance_structured": [
+        [
+          4.9847992515699104e-08,
+          1.2461998128924775e-07,
+          1.6615997505233032e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.2461998128924775e-07,
+          3.3231995010466064e-07,
+          4.98479925156991e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.6615997505233032e-07,
+          4.98479925156991e-07,
+          9.96959850313982e-07,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.9847992515699104e-08,
+          1.2461998128924775e-07,
+          1.6615997505233032e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.2461998128924775e-07,
+          3.3231995010466064e-07,
+          4.98479925156991e-07
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.6615997505233032e-07,
+          4.98479925156991e-07,
+          9.96959850313982e-07
+        ]
+      ],
+      "process_residual_bias": [
+        -1.2156087873173473e-06,
+        -2.071132509426354e-06,
+        1.6004334101400163e-07,
+        1.399187079909903e-06,
+        4.054272144213293e-06,
+        7.499358282753848e-06
+      ],
+      "process_residual_covariance_full": [
+        [
+          4.969336463512967e-08,
+          1.2441326954164301e-07,
+          1.6638738841817013e-07,
+          1.655801092231063e-10,
+          5.676352232371384e-10,
+          1.0474702900775827e-09
+        ],
+        [
+          1.2441326954164301e-07,
+          3.323316578903466e-07,
+          5.002203003668384e-07,
+          3.9588331681654727e-10,
+          1.3371784003285698e-09,
+          2.3503273859889465e-09
+        ],
+        [
+          1.6638738841817013e-07,
+          5.002203003668384e-07,
+          1.003765941748118e-06,
+          3.271436746148317e-10,
+          1.3643125997116678e-09,
+          1.6878955654983216e-09
+        ],
+        [
+          1.655801092231063e-10,
+          3.9588331681654727e-10,
+          3.271436746148317e-10,
+          4.979978064324093e-08,
+          1.245527597383989e-07,
+          1.6653307633939349e-07
+        ],
+        [
+          5.676352232371384e-10,
+          1.3371784003285698e-09,
+          1.3643125997116678e-09,
+          1.245527597383989e-07,
+          3.322352418426164e-07,
+          4.994200497176812e-07
+        ],
+        [
+          1.0474702900775827e-09,
+          2.3503273859889465e-09,
+          1.6878955654983216e-09,
+          1.6653307633939349e-07,
+          4.994200497176812e-07,
+          9.994607548670058e-07
+        ]
+      ],
+      "process_residual_sample_count": 81081,
+      "process_structured_scale": 9.96959850313982e-07,
+      "process_transition_count": 81081,
+      "state_observation_count": 81900,
+      "state_units": "km, km/s, km/s^2; covariances use corresponding products",
+      "training_trajectory_count": 819
+    },
+    "training_manifest_sha256": "56caaf4a893c1dff07ec5d808f13d3bcd570c360c60c339aa82745df03a46b95",
+    "training_pool_path": "/home/spcom41/BiMambaTracker/radar-tracking/artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "training_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "training_tensor_sha256": {
+      "initial_state": "381b74fa88836817f72ba21499af29b4921d0dcbcd8c5195ab5fb4db4503edef",
+      "observations": "8069d8b02e6c6a06f9c420eafa0ce3a445fd9007a2b85bed66adcba73a60c91f",
+      "state": "332c2764a958b36aa588ed6595d1e29cc3e5bcf038f5db540532f507e46d9f3d"
+    },
+    "training_trajectory_count": 819,
+    "units": {
+      "observation": "range km, bearing rad",
+      "state": "km, km/s, km/s^2; covariances use corresponding products"
+    }
+  },
+  "oracle_matrices_verified_against_fixed_test": {
+    "Q": [
+      [
+        5.000000058430487e-08,
+        1.2499999968440534e-07,
+        1.6666666624587378e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.2499999968440534e-07,
+        3.3333333249174757e-07,
+        4.999999987376214e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.6666666624587378e-07,
+        4.999999987376214e-07,
+        9.999999974752427e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        5.000000058430487e-08,
+        1.2499999968440534e-07,
+        1.6666666624587378e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.2499999968440534e-07,
+        3.3333333249174757e-07,
+        4.999999987376214e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.6666666624587378e-07,
+        4.999999987376214e-07,
+        9.999999974752427e-07
+      ]
+    ],
+    "R": [
+      [
+        0.0009,
+        0.0
+      ],
+      [
+        0.0,
+        0.00030461741978670857
+      ]
+    ]
+  },
+  "oracle_reproduction_checks": {
+    "calibrated_ekf_oracle": {
+      "acceleration_rmse_mps2": {
+        "absolute_difference": 0.0,
+        "current": 4.77669620513916,
+        "pass": true,
+        "recorded": 4.77669620513916
+      },
+      "position_rmse_m": {
+        "absolute_difference": 0.0,
+        "current": 325.99078369140625,
+        "pass": true,
+        "recorded": 325.99078369140625
+      },
+      "six_state_mse_db": {
+        "absolute_difference": 0.0,
+        "current": -17.341874362521576,
+        "pass": true,
+        "recorded": -17.341874362521576
+      },
+      "six_state_mse_scaled_units": {
+        "absolute_difference": 0.0,
+        "current": 0.018442193046212196,
+        "pass": true,
+        "recorded": 0.018442193046212196
+      },
+      "velocity_rmse_mps": {
+        "absolute_difference": 0.0,
+        "current": 66.03291320800781,
+        "pass": true,
+        "recorded": 66.03291320800781
+      }
+    },
+    "calibrated_ukf_oracle": {
+      "acceleration_rmse_mps2": {
+        "absolute_difference": 0.0,
+        "current": 4.776231288909912,
+        "pass": true,
+        "recorded": 4.776231288909912
+      },
+      "position_rmse_m": {
+        "absolute_difference": 0.0,
+        "current": 325.94940185546875,
+        "pass": true,
+        "recorded": 325.94940185546875
+      },
+      "six_state_mse_db": {
+        "absolute_difference": 0.0,
+        "current": -17.343034264576705,
+        "pass": true,
+        "recorded": -17.343034264576705
+      },
+      "six_state_mse_scaled_units": {
+        "absolute_difference": 0.0,
+        "current": 0.01843726821243763,
+        "pass": true,
+        "recorded": 0.01843726821243763
+      },
+      "velocity_rmse_mps": {
+        "absolute_difference": 0.0,
+        "current": 66.01353454589844,
+        "pass": true,
+        "recorded": 66.01353454589844
+      }
+    },
+    "legacy_ekf_oracle": {
+      "acceleration_rmse_mps2": {
+        "absolute_difference": 0.0,
+        "current": 184.88400268554688,
+        "pass": true,
+        "recorded": 184.88400268554688
+      },
+      "position_rmse_m": {
+        "absolute_difference": 0.0,
+        "current": 809.7575073242188,
+        "pass": true,
+        "recorded": 809.7575073242188
+      },
+      "six_state_mse_db": {
+        "absolute_difference": 0.0,
+        "current": -8.805299798707065,
+        "pass": true,
+        "recorded": -8.805299798707065
+      },
+      "six_state_mse_scaled_units": {
+        "absolute_difference": 0.0,
+        "current": 0.13166490197181702,
+        "pass": true,
+        "recorded": 0.13166490197181702
+      },
+      "velocity_rmse_mps": {
+        "absolute_difference": 0.0,
+        "current": 316.3858947753906,
+        "pass": true,
+        "recorded": 316.3858947753906
+      }
+    },
+    "legacy_ukf_oracle": {
+      "acceleration_rmse_mps2": {
+        "absolute_difference": 0.0,
+        "current": 28276.541015625,
+        "pass": true,
+        "recorded": 28276.541015625
+      },
+      "position_rmse_m": {
+        "absolute_difference": 0.0,
+        "current": 255433.453125,
+        "pass": true,
+        "recorded": 255433.453125
+      },
+      "six_state_mse_db": {
+        "absolute_difference": 0.0,
+        "current": 41.469674879557985,
+        "pass": true,
+        "recorded": 41.469674879557985
+      },
+      "six_state_mse_scaled_units": {
+        "absolute_difference": 0.0,
+        "current": 14027.0869140625,
+        "pass": true,
+        "recorded": 14027.0869140625
+      },
+      "velocity_rmse_mps": {
+        "absolute_difference": 0.0,
+        "current": 134598.3125,
+        "pass": true,
+        "recorded": 134598.3125
+      }
+    }
+  },
+  "oracle_vs_estimated_QR": {
+    "calibrated_ekf": {
+      "acceleration_rmse_mps2": {
+        "estimated_QR": 4.776866912841797,
+        "estimated_minus_oracle": 0.00017070770263671875,
+        "oracle": 4.77669620513916
+      },
+      "position_rmse_m": {
+        "estimated_QR": 326.044189453125,
+        "estimated_minus_oracle": 0.05340576171875,
+        "oracle": 325.99078369140625
+      },
+      "six_state_mse_db": {
+        "estimated_QR": -17.340374933195925,
+        "estimated_minus_oracle": 0.0014994293256513913,
+        "oracle": -17.341874362521576
+      },
+      "six_state_mse_scaled_units": {
+        "estimated_QR": 0.018448561429977417,
+        "estimated_minus_oracle": 6.368383765220642e-06,
+        "oracle": 0.018442193046212196
+      },
+      "velocity_rmse_mps": {
+        "estimated_QR": 66.05840301513672,
+        "estimated_minus_oracle": 0.02548980712890625,
+        "oracle": 66.03291320800781
+      }
+    },
+    "calibrated_ukf": {
+      "acceleration_rmse_mps2": {
+        "estimated_QR": 4.776387691497803,
+        "estimated_minus_oracle": 0.000156402587890625,
+        "oracle": 4.776231288909912
+      },
+      "position_rmse_m": {
+        "estimated_QR": 326.00042724609375,
+        "estimated_minus_oracle": 0.051025390625,
+        "oracle": 325.94940185546875
+      },
+      "six_state_mse_db": {
+        "estimated_QR": -17.34160066379426,
+        "estimated_minus_oracle": 0.0014336007824446995,
+        "oracle": -17.343034264576705
+      },
+      "six_state_mse_scaled_units": {
+        "estimated_QR": 0.018443355336785316,
+        "estimated_minus_oracle": 6.087124347686768e-06,
+        "oracle": 0.01843726821243763
+      },
+      "velocity_rmse_mps": {
+        "estimated_QR": 66.03799438476562,
+        "estimated_minus_oracle": 0.0244598388671875,
+        "oracle": 66.01353454589844
+      }
+    },
+    "legacy_ekf": {
+      "acceleration_rmse_mps2": {
+        "estimated_QR": 876.5816040039062,
+        "estimated_minus_oracle": 691.6976013183594,
+        "oracle": 184.88400268554688
+      },
+      "position_rmse_m": {
+        "estimated_QR": 63105.8515625,
+        "estimated_minus_oracle": 62296.09405517578,
+        "oracle": 809.7575073242188
+      },
+      "six_state_mse_db": {
+        "estimated_QR": 28.297830731550576,
+        "estimated_minus_oracle": 37.103130530257644,
+        "oracle": -8.805299798707065
+      },
+      "six_state_mse_scaled_units": {
+        "estimated_QR": 675.745361328125,
+        "estimated_minus_oracle": 675.6136964261532,
+        "oracle": 0.13166490197181702
+      },
+      "velocity_rmse_mps": {
+        "estimated_QR": 8447.265625,
+        "estimated_minus_oracle": 8130.879730224609,
+        "oracle": 316.3858947753906
+      }
+    },
+    "legacy_ukf": {
+      "acceleration_rmse_mps2": {
+        "estimated_QR": 28245.916015625,
+        "estimated_minus_oracle": -30.625,
+        "oracle": 28276.541015625
+      },
+      "position_rmse_m": {
+        "estimated_QR": 255398.109375,
+        "estimated_minus_oracle": -35.34375,
+        "oracle": 255433.453125
+      },
+      "six_state_mse_db": {
+        "estimated_QR": 41.466656027321534,
+        "estimated_minus_oracle": -0.0030188522364511527,
+        "oracle": 41.469674879557985
+      },
+      "six_state_mse_scaled_units": {
+        "estimated_QR": 14017.33984375,
+        "estimated_minus_oracle": -9.7470703125,
+        "oracle": 14027.0869140625
+      },
+      "velocity_rmse_mps": {
+        "estimated_QR": 134454.5,
+        "estimated_minus_oracle": -143.8125,
+        "oracle": 134598.3125
+      }
+    }
+  },
+  "post_evaluation_note": "Oracle reproduction checks were independently computed from stored oracle metric records after evaluation. Final evaluator/test source hashes are recorded separately because report metadata and oracle-consistency checks were added after the eight filter runs; the run-time source hashes remain in provenance.",
+  "post_evaluation_source_file_sha256": {
+    "experiments/evaluate_estimated_noise_baselines.py": "b8f0a4930c2961e6c80ceec817f6d91ff2059b652d6ee5a97fc5f46c08d14d2f",
+    "tests/test_noise_estimation.py": "8a924d59227fd2ec9906a31257cd4e449a138d6350d6edd095fcf7d35bf70388"
+  },
+  "preservation_note": "No model training, checkpoint, historical result, fixed dataset, or existing oracle baseline output was modified.",
+  "provenance": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "git": {
+      "commit": "90363fff84710a81d36b128b179a77762b1dd798",
+      "dirty": true,
+      "status_porcelain": [
+        "A  docs/reports/project_explanation_detailed.pdf",
+        " M experiments/five_seed_harness.py",
+        "?? artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/ekf_baseline_v1/",
+        "?? artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/independent_verification/",
+        "?? artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/ukf_baseline_v1/",
+        "?? docs/reports/baseline_methodology_audit.md",
+        "?? docs/reports/ekf_baseline_validation.md",
+        "?? docs/reports/experimental_evaluation_verification.md",
+        "?? docs/reports/ukf_baseline_validation.md",
+        "?? experiments/evaluate_ekf_baselines.py",
+        "?? experiments/evaluate_estimated_noise_baselines.py",
+        "?? experiments/evaluate_five_seed.py",
+        "?? experiments/evaluate_ukf_baselines.py",
+        "?? src/radar_tracking/models/ekf_baselines.py",
+        "?? src/radar_tracking/models/noise_estimation.py",
+        "?? src/radar_tracking/models/ukf.py",
+        "?? tests/"
+      ]
+    },
+    "python_version": "3.12.3",
+    "pytorch_version": "2.4.0+cu121",
+    "source_file_sha256": {
+      "experiments/evaluate_ekf_baselines.py": "e997e142ec8485a1a51e39e497293b43d2b4940df9c51cfc50dda5862298fcf9",
+      "experiments/evaluate_estimated_noise_baselines.py": "e9de58ea5b90076c445c9b94e3ae10d70544298d03c9969b2f960e9b6896bb23",
+      "experiments/evaluate_ukf_baselines.py": "ffee38add7d3f0dd870206fab0afcb7a729751ba0f3893fc5551de0225349157",
+      "experiments/five_seed_harness.py": "7f871e70bfc37d1186da734b8d2cebbf8482a60203413faf03fb05de99a78336",
+      "src/radar_tracking/data/data_generation.py": "c1566c6dbdc016d78b790735cebd475db0cfe239e7aea8bcefdd4927895b3750",
+      "src/radar_tracking/dynamics/constant_acceleration.py": "b3179c645cb01aea5314d94d06da588991035062949470f7d0a9f9ffb4acf9d2",
+      "src/radar_tracking/models/ekf.py": "5ae9026fa00c85d10dffcf9c2a9a634e6b3650a042242b8479449d0d4194ae8e",
+      "src/radar_tracking/models/ekf_baselines.py": "d3018738f707d22109a44e3fb5e9ab51d4237cd634637d9306253d105f5e7100",
+      "src/radar_tracking/models/noise_estimation.py": "d42df2d1e58cfd6ba0e981f8eac0d6a3f5fb704cbf82812b26e144d6e9fc49fc",
+      "src/radar_tracking/models/ukf.py": "2831e7c5bcccff48d36210527a2f6482047b003f82973656630843372ec6df81",
+      "tests/test_noise_estimation.py": "a993f51e2feb291f4d91387fab82e05714f4523ea025d976d0a55bc91f23419f"
+    }
+  },
+  "variants": {
+    "calibrated_ekf_estimated_QR": {
+      "Q_R_configuration": "estimated_QR_train_only",
+      "Q_R_policy": "estimated_QR",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 0.11414152383804321,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.579610504151788e-06,
+          "relative_minimum_eigenvalue": 4.0122213249560446e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11082135140895844,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.573676051222719e-06,
+          "relative_minimum_eigenvalue": 4.127071224502288e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11364832520484924,
+          "max_abs_symmetry_error": 1.862645149230957e-08,
+          "minimum_eigenvalue": 5.514088115887716e-06,
+          "relative_minimum_eigenvalue": 4.851886842516251e-05,
+          "relative_symmetry_error": 1.6389552115469996e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.09064976125955582,
+          "max_abs_symmetry_error": 1.5832483768463135e-08,
+          "minimum_eigenvalue": 1.471093582949834e-06,
+          "relative_minimum_eigenvalue": 1.6228323147515766e-05,
+          "relative_symmetry_error": 1.7465555401940946e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.12756727635860443,
+          "max_abs_symmetry_error": 1.4901161193847656e-08,
+          "minimum_eigenvalue": 1.3908515938965138e-06,
+          "relative_minimum_eigenvalue": 1.09028869701433e-05,
+          "relative_symmetry_error": 1.168102201631882e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.47657665610313416,
+          "max_abs_symmetry_error": 4.470348358154297e-08,
+          "minimum_eigenvalue": 1.2072703157173237e-06,
+          "relative_minimum_eigenvalue": 2.5332133191113826e-06,
+          "relative_symmetry_error": 9.38012476581207e-08
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "finite_predictions": true,
+      "initialization": "calibrated_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 4.776866912841797,
+        "position_rmse_m": 326.044189453125,
+        "six_state_mse_db": -17.340374933195925,
+        "six_state_mse_scaled_units": 0.018448561429977417,
+        "velocity_rmse_mps": 66.05840301513672
+      },
+      "runtime_seconds": 0.09849713400035398
+    },
+    "calibrated_ekf_oracle": {
+      "Q_R_configuration": "simulator oracle matrices",
+      "Q_R_policy": "oracle",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 0.11414152383804321,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.579610504151788e-06,
+          "relative_minimum_eigenvalue": 4.0122213249560446e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11079765856266022,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.5736151150777005e-06,
+          "relative_minimum_eigenvalue": 4.127898864680901e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11331016570329666,
+          "max_abs_symmetry_error": 1.862645149230957e-08,
+          "minimum_eigenvalue": 5.517070803762181e-06,
+          "relative_minimum_eigenvalue": 4.868998803431168e-05,
+          "relative_symmetry_error": 1.643846445631425e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.09007001668214798,
+          "max_abs_symmetry_error": 2.2351741790771484e-08,
+          "minimum_eigenvalue": 1.4769086646992946e-06,
+          "relative_minimum_eigenvalue": 1.639734000491444e-05,
+          "relative_symmetry_error": 2.4815963683977316e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.12694254517555237,
+          "max_abs_symmetry_error": 2.2351741790771484e-08,
+          "minimum_eigenvalue": 1.396031052536273e-06,
+          "relative_minimum_eigenvalue": 1.0997345270880032e-05,
+          "relative_symmetry_error": 1.7607762003990501e-07
+        },
+        {
+          "covariance_diagonal_scale": 0.4744134545326233,
+          "max_abs_symmetry_error": 2.9802322387695312e-08,
+          "minimum_eigenvalue": 1.2100252888558316e-06,
+          "relative_minimum_eigenvalue": 2.5505712528683944e-06,
+          "relative_symmetry_error": 6.281930353679854e-08
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "finite_predictions": true,
+      "initialization": "calibrated_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 4.77669620513916,
+        "position_rmse_m": 325.99078369140625,
+        "six_state_mse_db": -17.341874362521576,
+        "six_state_mse_scaled_units": 0.018442193046212196,
+        "velocity_rmse_mps": 66.03291320800781
+      },
+      "runtime_seconds": 0.09119259499857435
+    },
+    "calibrated_ukf_estimated_QR": {
+      "Q_R_configuration": "estimated_QR_train_only",
+      "Q_R_policy": "estimated_QR",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 0.1108273176640657,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.5740083398358085e-06,
+          "relative_minimum_eigenvalue": 4.1271488259783724e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11370225035890348,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 5.514231930286238e-06,
+          "relative_minimum_eigenvalue": 4.849712220189532e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.09077624854440772,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.5013536319032522e-06,
+          "relative_minimum_eigenvalue": 1.653905791412817e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.12759797175705329,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.3942878453464818e-06,
+          "relative_minimum_eigenvalue": 1.0927194422817376e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.4769887163227913,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.2331253304548553e-06,
+          "relative_minimum_eigenvalue": 2.5852295625801885e-06,
+          "relative_symmetry_error": 0.0
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "filter_diagnostics": {
+        "innovation_covariance_jitter_max": 2.0603603745061756e-15,
+        "innovation_jitter_max": 2.0603603745061756e-15,
+        "posterior_min_eigenvalue": 1.2331253304548553e-06,
+        "sigma_covariance_jitter_max": 5.450580083198871e-13
+      },
+      "finite_predictions": true,
+      "initialization": "calibrated_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 4.776387691497803,
+        "position_rmse_m": 326.00042724609375,
+        "six_state_mse_db": -17.34160066379426,
+        "six_state_mse_scaled_units": 0.018443355336785316,
+        "velocity_rmse_mps": 66.03799438476562
+      },
+      "runtime_seconds": 1.1392477310000686
+    },
+    "calibrated_ukf_oracle": {
+      "Q_R_configuration": "simulator oracle matrices",
+      "Q_R_policy": "oracle",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 0.11080367436624959,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 4.573942365216461e-06,
+          "relative_minimum_eigenvalue": 4.127969935453393e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11336435469578303,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 5.517170921144156e-06,
+          "relative_minimum_eigenvalue": 4.86675986993413e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.09019315575095829,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.5066126633082696e-06,
+          "relative_minimum_eigenvalue": 1.670429037285639e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.1269726247129201,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.3995982068310966e-06,
+          "relative_minimum_eigenvalue": 1.1022834331380728e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.47481515025227805,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.235511416215273e-06,
+          "relative_minimum_eigenvalue": 2.60208928792357e-06,
+          "relative_symmetry_error": 0.0
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "filter_diagnostics": {
+        "innovation_covariance_jitter_max": 2.0707720236406285e-15,
+        "innovation_jitter_max": 2.0707720236406285e-15,
+        "posterior_min_eigenvalue": 1.235511416215273e-06,
+        "sigma_covariance_jitter_max": 5.427093334173883e-13
+      },
+      "finite_predictions": true,
+      "initialization": "calibrated_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 4.776231288909912,
+        "position_rmse_m": 325.94940185546875,
+        "six_state_mse_db": -17.343034264576705,
+        "six_state_mse_scaled_units": 0.01843726821243763,
+        "velocity_rmse_mps": 66.01353454589844
+      },
+      "runtime_seconds": 1.18032495600346
+    },
+    "legacy_ekf_estimated_QR": {
+      "Q_R_configuration": "estimated_QR_train_only",
+      "Q_R_policy": "estimated_QR",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 8000.0947265625,
+          "max_abs_symmetry_error": 0.0009765625,
+          "minimum_eigenvalue": 0.000538191176019609,
+          "relative_minimum_eigenvalue": 6.727309909138057e-08,
+          "relative_symmetry_error": 1.2206886879084777e-07
+        },
+        {
+          "covariance_diagonal_scale": 1.910974383354187,
+          "max_abs_symmetry_error": 0.0026433467864990234,
+          "minimum_eigenvalue": -0.001039427937939763,
+          "relative_minimum_eigenvalue": -0.000543925620149821,
+          "relative_symmetry_error": 0.0013832455733790994
+        },
+        {
+          "covariance_diagonal_scale": 0.17105799913406372,
+          "max_abs_symmetry_error": 0.0014867335557937622,
+          "minimum_eigenvalue": -0.008933816105127335,
+          "relative_minimum_eigenvalue": -0.052226822823286057,
+          "relative_symmetry_error": 0.008691400289535522
+        },
+        {
+          "covariance_diagonal_scale": 0.12763801217079163,
+          "max_abs_symmetry_error": 4.1816383600234985e-06,
+          "minimum_eigenvalue": 1.3908910432292032e-06,
+          "relative_minimum_eigenvalue": 1.0897153515543323e-05,
+          "relative_symmetry_error": 3.2761701731942594e-05
+        },
+        {
+          "covariance_diagonal_scale": 0.4766949713230133,
+          "max_abs_symmetry_error": 8.940696716308594e-08,
+          "minimum_eigenvalue": 1.207273840009293e-06,
+          "relative_minimum_eigenvalue": 2.5325919068563962e-06,
+          "relative_symmetry_error": 1.8755592634533969e-07
+        }
+      ],
+      "covariance_stability_warning": true,
+      "evaluation_batch_size": 1024,
+      "finite_predictions": true,
+      "initialization": "legacy_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 876.5816040039062,
+        "position_rmse_m": 63105.8515625,
+        "six_state_mse_db": 28.297830731550576,
+        "six_state_mse_scaled_units": 675.745361328125,
+        "velocity_rmse_mps": 8447.265625
+      },
+      "runtime_seconds": 0.09079792599368375
+    },
+    "legacy_ekf_oracle": {
+      "Q_R_configuration": "simulator oracle matrices",
+      "Q_R_policy": "oracle",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 8000.0947265625,
+          "max_abs_symmetry_error": 0.0009765625,
+          "minimum_eigenvalue": 0.00022134183382149786,
+          "relative_minimum_eigenvalue": 2.7667400814834764e-08,
+          "relative_symmetry_error": 1.2206886879084777e-07
+        },
+        {
+          "covariance_diagonal_scale": 1.8996882438659668,
+          "max_abs_symmetry_error": 0.002715587615966797,
+          "minimum_eigenvalue": -0.000996036222204566,
+          "relative_minimum_eigenvalue": -0.0005243156338110566,
+          "relative_symmetry_error": 0.0014294912107288837
+        },
+        {
+          "covariance_diagonal_scale": 0.169777974486351,
+          "max_abs_symmetry_error": 0.0027867909520864487,
+          "minimum_eigenvalue": -0.001128820120356977,
+          "relative_minimum_eigenvalue": -0.0066488017328083515,
+          "relative_symmetry_error": 0.016414325684309006
+        },
+        {
+          "covariance_diagonal_scale": 0.12702429294586182,
+          "max_abs_symmetry_error": 5.921348929405212e-06,
+          "minimum_eigenvalue": 1.3960345768282423e-06,
+          "relative_minimum_eigenvalue": 1.099029577744659e-05,
+          "relative_symmetry_error": 4.6615878090960905e-05
+        },
+        {
+          "covariance_diagonal_scale": 0.474531352519989,
+          "max_abs_symmetry_error": 9.12696123123169e-08,
+          "minimum_eigenvalue": 1.210027562592586e-06,
+          "relative_minimum_eigenvalue": 2.5499423372821184e-06,
+          "relative_symmetry_error": 1.923363157629865e-07
+        }
+      ],
+      "covariance_stability_warning": true,
+      "evaluation_batch_size": 1024,
+      "finite_predictions": true,
+      "initialization": "legacy_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 184.88400268554688,
+        "position_rmse_m": 809.7575073242188,
+        "six_state_mse_db": -8.805299798707065,
+        "six_state_mse_scaled_units": 0.13166490197181702,
+        "velocity_rmse_mps": 316.3858947753906
+      },
+      "runtime_seconds": 0.0925357919986709
+    },
+    "legacy_ukf_estimated_QR": {
+      "Q_R_configuration": "estimated_QR_train_only",
+      "Q_R_policy": "estimated_QR",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 13226.105554048516,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 0.05162591461341531,
+          "relative_minimum_eigenvalue": 3.9033345380804555e-06,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 49806.398889858225,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 0.012906705443254486,
+          "relative_minimum_eigenvalue": 2.591374949993142e-07,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 5341114.804423887,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.1988785444239726e-05,
+          "relative_minimum_eigenvalue": 2.2446223088688846e-12,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11906694924024117,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.3953886146686196e-06,
+          "relative_minimum_eigenvalue": 1.1719361448097126e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.4014796776794974,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.2389173970416067e-06,
+          "relative_minimum_eigenvalue": 3.0858782297584656e-06,
+          "relative_symmetry_error": 0.0
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "filter_diagnostics": {
+        "innovation_covariance_jitter_max": 2.559477683791148e-15,
+        "innovation_jitter_max": 2.559477683791148e-15,
+        "posterior_min_eigenvalue": 1.2389173970416067e-06,
+        "sigma_covariance_jitter_max": 4.508705812159586e-13
+      },
+      "finite_predictions": true,
+      "initialization": "legacy_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 28245.916015625,
+        "position_rmse_m": 255398.109375,
+        "six_state_mse_db": 41.466656027321534,
+        "six_state_mse_scaled_units": 14017.33984375,
+        "velocity_rmse_mps": 134454.5
+      },
+      "runtime_seconds": 1.1555413989990484
+    },
+    "legacy_ukf_oracle": {
+      "Q_R_configuration": "simulator oracle matrices",
+      "Q_R_policy": "oracle",
+      "covariance_snapshots": [
+        {
+          "covariance_diagonal_scale": 13226.091479030694,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 0.05162591468543481,
+          "relative_minimum_eigenvalue": 3.903338697398631e-06,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 49806.371695507136,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 0.01290670598582835,
+          "relative_minimum_eigenvalue": 2.591376473824256e-07,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 5341126.478350652,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.1993591004573492e-05,
+          "relative_minimum_eigenvalue": 2.245517130737771e-12,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.11838136322461357,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.4007237623979522e-06,
+          "relative_minimum_eigenvalue": 1.1832299647878333e-05,
+          "relative_symmetry_error": 0.0
+        },
+        {
+          "covariance_diagonal_scale": 0.40601822359635203,
+          "max_abs_symmetry_error": 0.0,
+          "minimum_eigenvalue": 1.2428903035054193e-06,
+          "relative_minimum_eigenvalue": 3.06116876355051e-06,
+          "relative_symmetry_error": 0.0
+        }
+      ],
+      "covariance_stability_warning": false,
+      "evaluation_batch_size": 1024,
+      "filter_diagnostics": {
+        "innovation_covariance_jitter_max": 2.566711795203627e-15,
+        "innovation_jitter_max": 2.566711795203627e-15,
+        "posterior_min_eigenvalue": 1.2428903035054193e-06,
+        "sigma_covariance_jitter_max": 4.602649638194347e-13
+      },
+      "finite_predictions": true,
+      "initialization": "legacy_P0 from Task 3A",
+      "metrics": {
+        "acceleration_rmse_mps2": 28276.541015625,
+        "position_rmse_m": 255433.453125,
+        "six_state_mse_db": 41.469674879557985,
+        "six_state_mse_scaled_units": 14027.0869140625,
+        "velocity_rmse_mps": 134598.3125
+      },
+      "runtime_seconds": 1.157969285006402
+    }
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "estimation_formula": "centered unbiased sample covariance of transition/measurement residuals; selected Q projected onto shared integrated-white-jerk CA covariance; selected R diagonal",
+  "information_boundary": "Estimator received only train state and train observations; the fixed test file was opened only after the estimate was frozen. The serialized fixed-pool container includes validation tensors and torch.load deserializes the container as a whole, but the split extractor accesses and verifies only train keys; validation tensors are not inspected, hashed, or passed to estimation.",
+  "measurement_residual_sample_count": 81900,
+  "name": "estimated_QR_train_only",
+  "oracle_comparison": {
+    "Q_relative_frobenius_error": 0.0030401471897661,
+    "R_diagonal_relative_error": [
+      -0.006885026709347097,
+      0.006481438551073415
+    ],
+    "R_raw_range_bearing_correlation": -0.0006691191939721472,
+    "significant_discrepancy": false,
+    "significant_discrepancy_threshold": "5% relative Frobenius error for Q or absolute relative diagonal variance error for R"
+  },
+  "process_residual_sample_count": 81081,
+  "process_transition_count": 81081,
+  "simulator_oracle_Q": [
+    [
+      5.000000058430487e-08,
+      1.2499999968440534e-07,
+      1.6666666624587378e-07,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.2499999968440534e-07,
+      3.3333333249174757e-07,
+      4.999999987376214e-07,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.6666666624587378e-07,
+      4.999999987376214e-07,
+      9.999999974752427e-07,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      5.000000058430487e-08,
+      1.2499999968440534e-07,
+      1.6666666624587378e-07
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.2499999968440534e-07,
+      3.3333333249174757e-07,
+      4.999999987376214e-07
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.6666666624587378e-07,
+      4.999999987376214e-07,
+      9.999999974752427e-07
+    ]
+  ],
+  "simulator_oracle_R": [
+    [
+      0.0009,
+      0.0
+    ],
+    [
+      0.0,
+      0.00030461741978670857
+    ]
+  ],
+  "state_observation_count": 81900,
+  "training_estimates": {
+    "estimator_name": "estimated_QR_train_only",
+    "measurement_covariance_diagonal": [
+      [
+        0.0008938034759615876,
+        0.0
+      ],
+      [
+        0.0,
+        0.00030659177887464267
+      ]
+    ],
+    "measurement_covariance_final": [
+      [
+        0.0008938034759615876,
+        0.0
+      ],
+      [
+        0.0,
+        0.00030659177887464267
+      ]
+    ],
+    "measurement_covariance_min_eigenvalue": 0.00030659177887464267,
+    "measurement_residual_bias": [
+      7.417926716415303e-05,
+      4.319339749284188e-05
+    ],
+    "measurement_residual_covariance_full": [
+      [
+        0.0008938034759616024,
+        -3.5027146617676254e-07
+      ],
+      [
+        -3.5027146617676254e-07,
+        0.00030659177887464213
+      ]
+    ],
+    "measurement_residual_sample_count": 81900,
+    "method": "centered unbiased sample covariance of transition/measurement residuals; selected Q projected onto shared integrated-white-jerk CA covariance; selected R diagonal",
+    "observation_units": "range km, bearing rad",
+    "process_covariance_final": [
+      [
+        4.9847992515699104e-08,
+        1.2461998128924775e-07,
+        1.6615997505233032e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.2461998128924775e-07,
+        3.3231995010466064e-07,
+        4.98479925156991e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.6615997505233032e-07,
+        4.98479925156991e-07,
+        9.96959850313982e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        4.9847992515699104e-08,
+        1.2461998128924775e-07,
+        1.6615997505233032e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.2461998128924775e-07,
+        3.3231995010466064e-07,
+        4.98479925156991e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.6615997505233032e-07,
+        4.98479925156991e-07,
+        9.96959850313982e-07
+      ]
+    ],
+    "process_covariance_min_eigenvalue": 1.0981605700503556e-09,
+    "process_covariance_shared_block": [
+      [
+        4.97465726391853e-08,
+        1.2448301464002094e-07,
+        1.6646023237878182e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.2448301464002094e-07,
+        3.3228344986648154e-07,
+        4.998201750422598e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.6646023237878182e-07,
+        4.998201750422598e-07,
+        1.001613348307562e-06,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        4.97465726391853e-08,
+        1.2448301464002094e-07,
+        1.6646023237878182e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.2448301464002094e-07,
+        3.3228344986648154e-07,
+        4.998201750422598e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.6646023237878182e-07,
+        4.998201750422598e-07,
+        1.001613348307562e-06
+      ]
+    ],
+    "process_covariance_structured": [
+      [
+        4.9847992515699104e-08,
+        1.2461998128924775e-07,
+        1.6615997505233032e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.2461998128924775e-07,
+        3.3231995010466064e-07,
+        4.98479925156991e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.6615997505233032e-07,
+        4.98479925156991e-07,
+        9.96959850313982e-07,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        4.9847992515699104e-08,
+        1.2461998128924775e-07,
+        1.6615997505233032e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.2461998128924775e-07,
+        3.3231995010466064e-07,
+        4.98479925156991e-07
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.6615997505233032e-07,
+        4.98479925156991e-07,
+        9.96959850313982e-07
+      ]
+    ],
+    "process_residual_bias": [
+      -1.2156087873173473e-06,
+      -2.071132509426354e-06,
+      1.6004334101400163e-07,
+      1.399187079909903e-06,
+      4.054272144213293e-06,
+      7.499358282753848e-06
+    ],
+    "process_residual_covariance_full": [
+      [
+        4.969336463512967e-08,
+        1.2441326954164301e-07,
+        1.6638738841817013e-07,
+        1.655801092231063e-10,
+        5.676352232371384e-10,
+        1.0474702900775827e-09
+      ],
+      [
+        1.2441326954164301e-07,
+        3.323316578903466e-07,
+        5.002203003668384e-07,
+        3.9588331681654727e-10,
+        1.3371784003285698e-09,
+        2.3503273859889465e-09
+      ],
+      [
+        1.6638738841817013e-07,
+        5.002203003668384e-07,
+        1.003765941748118e-06,
+        3.271436746148317e-10,
+        1.3643125997116678e-09,
+        1.6878955654983216e-09
+      ],
+      [
+        1.655801092231063e-10,
+        3.9588331681654727e-10,
+        3.271436746148317e-10,
+        4.979978064324093e-08,
+        1.245527597383989e-07,
+        1.6653307633939349e-07
+      ],
+      [
+        5.676352232371384e-10,
+        1.3371784003285698e-09,
+        1.3643125997116678e-09,
+        1.245527597383989e-07,
+        3.322352418426164e-07,
+        4.994200497176812e-07
+      ],
+      [
+        1.0474702900775827e-09,
+        2.3503273859889465e-09,
+        1.6878955654983216e-09,
+        1.6653307633939349e-07,
+        4.994200497176812e-07,
+        9.994607548670058e-07
+      ]
+    ],
+    "process_residual_sample_count": 81081,
+    "process_structured_scale": 9.96959850313982e-07,
+    "process_transition_count": 81081,
+    "state_observation_count": 81900,
+    "state_units": "km, km/s, km/s^2; covariances use corresponding products",
+    "training_trajectory_count": 819
+  },
+  "training_manifest_sha256": "56caaf4a893c1dff07ec5d808f13d3bcd570c360c60c339aa82745df03a46b95",
+  "training_pool_path": "/home/spcom41/BiMambaTracker/radar-tracking/artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+  "training_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+  "training_tensor_sha256": {
+    "initial_state": "381b74fa88836817f72ba21499af29b4921d0dcbcd8c5195ab5fb4db4503edef",
+    "observations": "8069d8b02e6c6a06f9c420eafa0ce3a445fd9007a2b85bed66adcba73a60c91f",
+    "state": "332c2764a958b36aa588ed6595d1e29cc3e5bcf038f5db540532f507e46d9f3d"
+  },
+  "training_trajectory_count": 819,
+  "units": {
+    "observation": "range km, bearing rad",
+    "state": "km, km/s, km/s^2; covariances use corresponding products"
+  }
+}

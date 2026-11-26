@@ -19,7 +19,7 @@ import random
 import re
 import subprocess
 import sys
-import timeq
+import time
 from pathlib import Path
 from typing import Any
 
@@ -478,23 +478,31 @@ def predict_knet(api: dict[str, Any], model: Any, args: Any, truth: Any, obs: An
     return api["torch"].cat(predictions, dim=0)
 
 
-def calculate_metrics(torch: Any, truth: Any, estimate: Any, dt: float) -> dict[str, float]:
+def calculate_metrics(torch: Any, truth: Any, estimate: Any, dt: float) -> dict[str, float | None]:
+    """Return physical RMSEs (m, m/s, m/s²) and six-state MSE metrics.
+
+    State values already encode the configured time step. ``SCALE`` converts
+    their stored units to physical units; ``dt`` does not require another
+    conversion here.
+    """
     if tuple(truth.shape) != tuple(estimate.shape):
         raise ValueError(f"Prediction shape {tuple(estimate.shape)} != truth {tuple(truth.shape)}")
     if not torch.isfinite(estimate).all().item():
         raise ValueError("Predictions contain non-finite values")
+    if not math.isfinite(float(dt)) or float(dt) <= 0:
+        raise ValueError(f"dt must be positive and finite, got {dt}")
     error = estimate - truth
     mse = error.square().mean()
 
-    def vector_rmse(i: int, j: int, time_scale: float) -> float:
+    def vector_rmse(i: int, j: int) -> float:
         pair = error[:, [i, j], :]
-        return float(torch.sqrt(pair.square().sum(dim=1).mean()) * SCALE / time_scale)
+        return float(torch.sqrt(pair.square().sum(dim=1).mean()) * SCALE)
 
     mse_value = float(mse)
     return {
-        "position_rmse_m": vector_rmse(0, 3, 1.0),
-        "velocity_rmse_mps": vector_rmse(1, 4, dt),
-        "acceleration_rmse_mps2": vector_rmse(2, 5, dt * dt),
+        "position_rmse_m": vector_rmse(0, 3),
+        "velocity_rmse_mps": vector_rmse(1, 4),
+        "acceleration_rmse_mps2": vector_rmse(2, 5),
         "six_state_mse_scaled_units": mse_value,
         "six_state_mse_db": 10.0 * math.log10(mse_value) if mse_value > 0 else None,
     }
@@ -548,6 +556,11 @@ def make_models_from_reference(api: dict[str, Any], reference_metrics: dict[str,
 
 
 def verify_reference_evaluator(api: dict[str, Any], device: Any) -> dict[str, Any]:
+    """Calibrate metric/evaluator behavior against the separate reference models.
+
+    This intentionally loads the reference benchmark checkpoints. Five-seed
+    checkpoints are evaluated independently by ``evaluate_five_seed.py``.
+    """
     test, test_digest = load_test_payload(api)
     reference = json.loads((REFERENCE_DIR / "benchmark_metrics.json").read_text(encoding="utf-8"))
     if reference.get("fixed_test_dataset", {}).get("sha256") != test_digest:
@@ -561,32 +574,41 @@ def verify_reference_evaluator(api: dict[str, Any], device: Any) -> dict[str, An
                            test["initial_state"], device, 16)
     k_pred = predict_knet(api, knet, args, test["true_state"], test["observations"],
                           test["initial_state"], device, 64)
-    expected = {
-        "mamba": reference["mamba"],
-        "knet": reference["knet"],
-    }
+    expected = {"mamba": reference["mamba"], "knet": reference["knet"]}
     observed = {
         "mamba": calculate_metrics(api["torch"], test["true_state"], m_pred, args.dt),
         "knet": calculate_metrics(api["torch"], test["true_state"], k_pred, args.dt),
     }
+    expected_metrics = {
+        "position_rmse_m": "position_rmse_m",
+        "six_state_mse_scaled_units": "aggregate_six_state_mse",
+        "six_state_mse_db": "total_mse_db",
+    }
     for method in ("mamba", "knet"):
-        for metric, reference_key in (
-            ("position_rmse_m", "position_rmse_m"),
-            ("six_state_mse_scaled_units", "aggregate_six_state_mse"),
-        ):
+        for metric, reference_key in expected_metrics.items():
+            if reference_key not in expected[method]:
+                continue
             actual = observed[method][metric]
+            if actual is None:
+                raise RuntimeError(f"Reference {method} {metric} is undefined")
             expected_value = float(expected[method][reference_key])
             if not math.isclose(actual, expected_value, rel_tol=EVAL_RTOL, abs_tol=EVAL_ATOL):
                 raise RuntimeError(
                     f"Reference {method} {metric} mismatch: {actual} vs {expected_value}"
                 )
     return {
+        "validation_scope": "reference checkpoint calibration only",
+        "checkpoint_scope": {
+            "mamba": str(REFERENCE_DIR / "best_mamba_tracker.pt"),
+            "knet": str(REFERENCE_DIR / "best_knet_seq100.pt"),
+        },
         "shared_test_sha256": test_digest,
         "chunk_consistency": chunk_check,
         "reference_metrics": {
             method: {
-                "position_rmse_m": expected[method]["position_rmse_m"],
-                "six_state_mse_scaled_units": expected[method]["aggregate_six_state_mse"],
+                key: expected[method][reference_key]
+                for key, reference_key in expected_metrics.items()
+                if reference_key in expected[method]
             }
             for method in expected
         },

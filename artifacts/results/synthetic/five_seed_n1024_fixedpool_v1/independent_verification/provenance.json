@@ -1,0 +1,74 @@
+{
+  "checkpoints": [
+    {
+      "model_type": "mamba",
+      "seed": 11,
+      "sha256": "b3d90cc74d7eecd36023f8b7617b2bc14d7a70f871dbad646d81c13f82f10645"
+    },
+    {
+      "model_type": "knet",
+      "seed": 11,
+      "sha256": "f8c7a3c1d67e8f3dc736711ea8b0392c9dfe3cbd24d1788576080665f96c4c70"
+    },
+    {
+      "model_type": "mamba",
+      "seed": 22,
+      "sha256": "60ca0fc6756be750918b386ad476d68124ed864d48d42df35f6680abacfa9b32"
+    },
+    {
+      "model_type": "knet",
+      "seed": 22,
+      "sha256": "15f0a5ead9e557ce1504aea6bdf5df85cc3156672231b3af3a5fc9e3afa3eba0"
+    },
+    {
+      "model_type": "mamba",
+      "seed": 33,
+      "sha256": "73c1ca8ba10130cfef6e7f0af258af0e824063bf4aa2a702b83a1a394db0b29c"
+    },
+    {
+      "model_type": "knet",
+      "seed": 33,
+      "sha256": "8d3b664d2ad71518b70ad6167ee5a0741d385616a0f2b20b080b266235b2f1b0"
+    },
+    {
+      "model_type": "mamba",
+      "seed": 44,
+      "sha256": "904a1d2da50480485c164fadd23ef4272cd9f22ec7aa4c04c321472c2ea1c1fa"
+    },
+    {
+      "model_type": "knet",
+      "seed": 44,
+      "sha256": "eb476297c7fa38d8455944758ea3f7c051993ce4c694e7ee3bb53d6ee7f19048"
+    },
+    {
+      "model_type": "mamba",
+      "seed": 55,
+      "sha256": "a8b4d45ce653bda1ad6b7e156214cde65fdd1cb8a86ec73e7bcc6d052b2b9ace"
+    },
+    {
+      "model_type": "knet",
+      "seed": 55,
+      "sha256": "9e8c68b3886cc56231628f1dfbbdd1852dd37bc1dfb4528760c7fa925db9fd4d"
+    }
+  ],
+  "corrected_harness_sha256": "7f871e70bfc37d1186da734b8d2cebbf8482a60203413faf03fb05de99a78336",
+  "cuda_version": "12.1",
+  "git_commit": "90363fff84710a81d36b128b179a77762b1dd798",
+  "gpu_model": "NVIDIA GeForce RTX 3060",
+  "historical_record_note": "Historical experiment records retain their original harness hash; they were not rewritten.",
+  "python_version": "3.12.3",
+  "pytorch_version": "2.4.0+cu121",
+  "source_file_sha256": {
+    "src/radar_tracking/cli/benchmark_mamba.py": "496469729319629ddf96c1cc8690e913f4b10b170ae037c97f580bc6448130d1",
+    "src/radar_tracking/config.py": "ad8d3d88bc3dfce16c4a18d9e73de34400283c4f8bb3b1ba3f898fb6fd6dab38",
+    "src/radar_tracking/data/data_generation.py": "c1566c6dbdc016d78b790735cebd475db0cfe239e7aea8bcefdd4927895b3750",
+    "src/radar_tracking/dynamics/constant_acceleration.py": "b3179c645cb01aea5314d94d06da588991035062949470f7d0a9f9ffb4acf9d2",
+    "src/radar_tracking/models/bimamba_encoder.py": "f32e35c8fe1dae2a588ef79d1b39f59c923af389340b4f4a55f1c5bb64580484",
+    "src/radar_tracking/models/ekf.py": "5ae9026fa00c85d10dffcf9c2a9a634e6b3650a042242b8479449d0d4194ae8e",
+    "src/radar_tracking/models/kalman_net.py": "f9fe65ae9370bc3e1eedde533d8eac1699737de618adecd240971ad2622b7f6c",
+    "src/radar_tracking/models/prediction_head.py": "1613ac9c23f55f3958c2ccb14b8c5d546c6e5f5dd2908c22c78964890e578ca4",
+    "src/radar_tracking/models/tracker_model.py": "a8ab89b063044da086a3bece898e84f5ac78af83a7ff7437dc0a656f60e3cc8f",
+    "src/radar_tracking/training/train_validate_test.py": "d70d552794652c8e617e063d0234e0feea86b9ff09d8b277d2d801b5ef3f9b7c"
+  },
+  "test_set_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2"
+}
