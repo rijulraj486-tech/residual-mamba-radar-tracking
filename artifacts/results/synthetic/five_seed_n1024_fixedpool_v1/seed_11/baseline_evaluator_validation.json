@@ -1,0 +1,40 @@
+{
+  "chunk_consistency": {
+    "chunk_size": 3,
+    "knet_max_abs_delta": 0.0,
+    "mamba_max_abs_delta": 7.62939453125e-06,
+    "subset_examples": 8
+  },
+  "recomputed_metrics": {
+    "knet": {
+      "acceleration_rmse_mps2": 14.53394889831543,
+      "position_rmse_m": 397.2912292480469,
+      "six_state_mse_db": -15.549774154421725,
+      "six_state_mse_scaled_units": 0.027862660586833954,
+      "velocity_rmse_mps": 95.52176666259766
+    },
+    "mamba": {
+      "acceleration_rmse_mps2": 62.09491729736328,
+      "position_rmse_m": 330.3368835449219,
+      "six_state_mse_db": -17.042822187282486,
+      "six_state_mse_scaled_units": 0.019756853580474854,
+      "velocity_rmse_mps": 74.58483123779297
+    }
+  },
+  "reference_metrics": {
+    "knet": {
+      "position_rmse_m": 397.2860412597656,
+      "six_state_mse_scaled_units": 0.02786194160580635
+    },
+    "mamba": {
+      "position_rmse_m": 330.3368835449219,
+      "six_state_mse_scaled_units": 0.019756853580474854
+    }
+  },
+  "shared_test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2",
+  "status": "passed",
+  "tolerances": {
+    "atol": 1e-05,
+    "rtol": 0.0005
+  }
+}

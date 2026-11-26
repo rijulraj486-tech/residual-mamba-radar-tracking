@@ -1,0 +1,136 @@
+{
+  "confidence_interval": "two-sided Student t, df=4, critical value 2.7764451051977987",
+  "fixed_pool_file_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+  "method_summaries": [
+    {
+      "ci95_high": 333.84512075955854,
+      "ci95_low": 330.32453256075394,
+      "mean": 332.08482666015624,
+      "method": "mamba",
+      "metric": "position_rmse_m",
+      "sample_sd": 1.4176895697618774
+    },
+    {
+      "ci95_high": 82.14309400123543,
+      "ci95_low": 76.3683134694677,
+      "mean": 79.25570373535156,
+      "method": "mamba",
+      "metric": "velocity_rmse_mps",
+      "sample_sd": 2.32541997678991
+    },
+    {
+      "ci95_high": 71.97145659361672,
+      "ci95_low": 61.455420237437984,
+      "mean": 66.71343841552735,
+      "method": "mamba",
+      "metric": "acceleration_rmse_mps2",
+      "sample_sd": 4.23465461324142
+    },
+    {
+      "ci95_high": 0.020435062992371047,
+      "ci95_low": 0.019909194660388502,
+      "mean": 0.020172128826379775,
+      "method": "mamba",
+      "metric": "six_state_mse_scaled_units",
+      "sample_sd": 0.00021175951495061663
+    },
+    {
+      "ci95_high": -16.895919096455497,
+      "ci95_low": -17.009430446685737,
+      "mean": -16.952674771570617,
+      "method": "mamba",
+      "metric": "six_state_mse_db",
+      "sample_sd": 0.045709366782983284
+    },
+    {
+      "ci95_high": 422.18865048683153,
+      "ci95_low": 380.3547088881685,
+      "mean": 401.2716796875,
+      "method": "knet",
+      "metric": "position_rmse_m",
+      "sample_sd": 16.845918726475706
+    },
+    {
+      "ci95_high": 97.27249253123036,
+      "ci95_low": 92.26078688771496,
+      "mean": 94.76663970947266,
+      "method": "knet",
+      "metric": "velocity_rmse_mps",
+      "sample_sd": 2.018140837926168
+    },
+    {
+      "ci95_high": 14.889247456355028,
+      "ci95_low": 13.456085643010207,
+      "mean": 14.172666549682617,
+      "method": "knet",
+      "metric": "acceleration_rmse_mps2",
+      "sample_sd": 0.5771133798749423
+    },
+    {
+      "ci95_high": 0.0313095715963423,
+      "ci95_low": 0.02550079402093294,
+      "mean": 0.02840518280863762,
+      "method": "knet",
+      "metric": "six_state_mse_scaled_units",
+      "sample_sd": 0.0023391100908992037
+    },
+    {
+      "ci95_high": -15.048803218828395,
+      "ci95_low": -15.90570781404089,
+      "mean": -15.477255516434642,
+      "method": "knet",
+      "metric": "six_state_mse_db",
+      "sample_sd": 0.3450629946797691
+    }
+  ],
+  "paired_mamba_minus_knet": [
+    {
+      "ci95_high": -47.531944930022405,
+      "ci95_low": -90.84176112466508,
+      "difference": "mamba_minus_knet",
+      "mean": -69.18685302734374,
+      "metric": "position_rmse_m",
+      "sample_sd": 17.44023192155693
+    },
+    {
+      "ci95_high": -10.663905368798511,
+      "ci95_low": -20.357966579443676,
+      "difference": "mamba_minus_knet",
+      "mean": -15.510935974121093,
+      "metric": "velocity_rmse_mps",
+      "sample_sd": 3.9036571989962354
+    },
+    {
+      "ci95_high": 58.018130004637584,
+      "ci95_low": 47.063413727051866,
+      "difference": "mamba_minus_knet",
+      "mean": 52.540771865844725,
+      "metric": "acceleration_rmse_mps2",
+      "sample_sd": 4.411304625660882
+    },
+    {
+      "ci95_high": -0.005117754646586944,
+      "ci95_low": -0.011348353317928743,
+      "difference": "mamba_minus_knet",
+      "mean": -0.008233053982257843,
+      "metric": "six_state_mse_scaled_units",
+      "sample_sd": 0.0025089712999471652
+    },
+    {
+      "ci95_high": -1.0012814553363294,
+      "ci95_low": -1.9495570549356234,
+      "difference": "mamba_minus_knet",
+      "mean": -1.4754192551359764,
+      "metric": "six_state_mse_db",
+      "sample_sd": 0.38185676679484215
+    }
+  ],
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "shared_test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2"
+}

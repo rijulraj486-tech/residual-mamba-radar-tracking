@@ -1,0 +1,18 @@
+# Runtime baseline: Python 3.12.3
+# PyTorch is deliberately not listed here. Install the CUDA 12.1 build first:
+# python -m pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu121
+# Do not replace this installation by subsequently installing a generic/CPU PyTorch.
+
+numpy==2.4.4
+matplotlib==3.10.8
+mamba-ssm==2.2.0
+causal-conv1d==1.4.0
+tqdm
+
+# Compatibility notes:
+# - mamba-ssm and causal-conv1d require a compatible CUDA toolkit and compiler
+#   toolchain for CUDA builds; verify platform support before installation.
+# - NumPy 2.4.4 should be checked against PyTorch 2.4.0 and downstream libraries
+#   before relying on it, because the inventory does not establish compatibility.
+# - The CUDA build name and package availability can require a host-specific
+#   PyTorch package index; no installation is performed or assumed here.
