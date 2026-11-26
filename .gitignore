@@ -44,3 +44,12 @@ artifacts/logs/
 .DS_Store
 .idea/
 .vscode/
+# Generated experiment outputs
+artifacts/figures/
+artifacts/results/association/
+artifacts/results/multitarget/
+artifacts/results/real_world/
+
+# Ignore other synthetic outputs but retain five-seed results
+artifacts/results/synthetic/*
+!artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/
