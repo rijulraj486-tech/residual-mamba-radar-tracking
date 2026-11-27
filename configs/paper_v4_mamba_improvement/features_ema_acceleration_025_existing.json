@@ -1,0 +1,21 @@
+{
+  "experiment": "F2_fixed_ema_acceleration_alpha_025",
+  "status": "completed_existing_result_do_not_retrain_as_new",
+  "factor_changed": "coarse acceleration feature only",
+  "source_report": "docs/reports/mamba_acceleration_feature_ablation_v1.md",
+  "feature": {
+    "velocity_smoother": "causal EMA of measured Cartesian velocity",
+    "alpha": 0.25,
+    "startup": "use provided initial acceleration for first two samples",
+    "replacement_channels": [11, 14]
+  },
+  "model_overrides": {},
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2",
+  "test_mean_metrics": {
+    "position_rmse_m": 333.01,
+    "velocity_rmse_mps": 94.85,
+    "acceleration_rmse_mps2": 34.17,
+    "six_state_mse_scaled_units": 0.0202
+  }
+}

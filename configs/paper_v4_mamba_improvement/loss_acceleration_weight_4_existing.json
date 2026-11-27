@@ -1,0 +1,10 @@
+{
+  "experiment": "M2_group_loss_acceleration_weight_4",
+  "status": "completed_existing_test_evaluated",
+  "factor_changed": "loss only",
+  "source_report": "docs/reports/mamba_loss_ablation_v1.md",
+  "formula": "(MSE_position + MSE_velocity + 4*MSE_acceleration) / 6",
+  "model_overrides": {},
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2"
+}

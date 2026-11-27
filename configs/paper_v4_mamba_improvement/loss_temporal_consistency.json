@@ -1,0 +1,16 @@
+{
+  "experiment": "L3_temporal_kinematic_consistency",
+  "status": "planned_not_run",
+  "factor_changed": "loss only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "loss": {
+    "primary": "original six-state MSE",
+    "auxiliary": "0.01 * mean(normalized position-velocity and velocity-acceleration kinematic residual squares)",
+    "residuals": ["delta_position - velocity*dt - 0.5*acceleration*dt^2", "delta_velocity - acceleration*dt"],
+    "normalization": "RMS of corresponding residuals on train split only",
+    "acceleration_constancy_penalty": false
+  },
+  "training": {"seeds": [11, 22, 33, 44, 55]},
+  "selection_rule": "Choose checkpoint by original validation six-state MSE; reject if validation group RMSE trade-offs exceed preregistered guardrails.",
+  "test_access": "after configuration and checkpoint selection are frozen"
+}

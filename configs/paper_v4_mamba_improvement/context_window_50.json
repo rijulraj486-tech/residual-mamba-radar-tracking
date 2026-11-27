@@ -1,0 +1,16 @@
+{
+  "experiment": "C1_causal_context_window_50",
+  "status": "planned_not_run",
+  "factor_changed": "available token context only; same causal architecture dimensions",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "context": {
+    "max_tokens": 50,
+    "causal_window": "for prediction at index t, encode max(0,t-49)..t and reset Mamba state at the window start",
+    "features": "construct full feature stream from current/past measurements only before causal slicing",
+    "training": "train on every output index using the same context rule used at evaluation",
+    "future_data": false
+  },
+  "selection_rule": "minimum validation six-state MSE",
+  "implementation_gate": "validate reset/window equivalence and data alignment before training",
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]}
+}

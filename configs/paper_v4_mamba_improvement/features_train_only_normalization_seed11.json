@@ -1,0 +1,47 @@
+{
+  "experiment": "F1_train_only_feature_normalization_seed11_screen",
+  "status": "validation_screening_pilot",
+  "factor_changed": "input feature normalization only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "data": {
+    "train_validation_pool": "artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "train_validation_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "train_count": 819,
+    "validation_count": 204,
+    "test_access": false
+  },
+  "feature_normalization": {
+    "statistics_source": "training split only, all 819 trajectories and time points",
+    "normalized_token_indices_zero_based": [0, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "preserved_unscaled_token_indices_zero_based": [1, 2, 6],
+    "preserved_features": ["sin_bearing", "cos_bearing", "wrapped_delta_bearing"],
+    "formula": "(feature - train_mean) / max(train_population_std, 1e-4)",
+    "statistics_frozen_for_validation": true,
+    "state_estimate_representation": "unchanged physical scaled-state output; normalized values are input features only"
+  },
+  "model": {
+    "input_dim": 21,
+    "embed_dim": 128,
+    "d_state": 16,
+    "d_conv": 4,
+    "expand": 2,
+    "num_layers": 3,
+    "hidden_dim": 256,
+    "dropout": 0.08,
+    "direction": "forward_causal"
+  },
+  "training": {
+    "seed": 11,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "max_epochs": 180,
+    "early_stopping_patience": 25,
+    "min_delta": 0.000001,
+    "gradient_clip_norm": 1.0,
+    "loss": "mean squared error over batch, six states and time",
+    "checkpoint_selection": "minimum validation six-state MSE"
+  },
+  "output_directory": "artifacts/results/synthetic/paper_v4_mamba_improvement_v2/experiment_a_feature_norm_seed11"
+}

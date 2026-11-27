@@ -1,0 +1,48 @@
+{
+  "experiment": "M0_original_reference",
+  "status": "frozen_reference",
+  "source_artifact": "artifacts/results/synthetic/five_seed_n1024_fixedpool_v1",
+  "data": {
+    "train_validation_pool": "artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "train_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "train_count": 819,
+    "validation_count": 204,
+    "test_file": "artifacts/results/synthetic/fixed_test_comparison_01/shared_test.pt",
+    "test_sha256": "d547669524487190d505f08551b6a30e9c6881465892a447c6ee2dfbdaa705c2",
+    "test_count": 1024,
+    "sequence_length": 100,
+    "dt_seconds": 1.0,
+    "test_use": "final evaluation only after validation selection"
+  },
+  "model": {
+    "input_dim": 21,
+    "embed_dim": 128,
+    "d_state": 16,
+    "d_conv": 4,
+    "expand": 2,
+    "num_layers": 3,
+    "hidden_dim": 256,
+    "dropout": 0.08,
+    "direction": "forward_causal",
+    "output": "six state residual added to coarse state",
+    "parameter_count": 619014
+  },
+  "training": {
+    "seeds": [11, 22, 33, 44, 55],
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "max_epochs": 180,
+    "early_stopping_patience": 25,
+    "min_delta": 0.000001,
+    "gradient_clip_norm": 1.0,
+    "loss": "mean squared error over batch, six states and time",
+    "checkpoint_selection": "minimum validation six-state MSE"
+  },
+  "evaluation": {
+    "physical_metrics": ["position_rmse_m", "velocity_rmse_mps", "acceleration_rmse_mps2"],
+    "aggregate_metric": "six_state_mse_scaled_units and 10log10",
+    "report_seed_mean_and_sample_sd": true
+  }
+}

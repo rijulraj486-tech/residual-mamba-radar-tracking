@@ -1,0 +1,15 @@
+{
+  "experiment": "F5_initial_state_first_token_only",
+  "status": "planned_not_run",
+  "factor_changed": "initial-state feature placement only; retain 21-channel token width",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "feature_change": {
+    "baseline": "repeat six initial-state values at every time step",
+    "candidate": "put six initial-state values in the first token and set those six channels to zero for later tokens",
+    "causality": "forward-only Mamba carries the initial context causally",
+    "other_channels": "unchanged"
+  },
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "selection_rule": "minimum validation six-state MSE subject to group RMSE guardrails",
+  "test_access": "after selection is frozen"
+}

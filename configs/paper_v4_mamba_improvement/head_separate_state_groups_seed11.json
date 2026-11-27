@@ -1,0 +1,46 @@
+{
+  "experiment": "H1_separate_state_group_residual_heads_seed11_screen",
+  "status": "validation_screening_pilot",
+  "factor_changed": "prediction head only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "data": {
+    "train_validation_pool": "artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "train_validation_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "train_count": 819,
+    "validation_count": 204,
+    "test_access": false
+  },
+  "model": {
+    "encoder": "unchanged 128-dim, three-layer forward Mamba; d_state=16, d_conv=4, expand=2",
+    "head": "three independent 128->128->64->2 SiLU MLP branches",
+    "branches": {
+      "position_output_order": ["delta_x", "delta_y"],
+      "velocity_output_order": ["delta_vx", "delta_vy"],
+      "acceleration_output_order": ["delta_ax", "delta_ay"]
+    },
+    "recombined_state_order": ["delta_x", "delta_vx", "delta_ax", "delta_y", "delta_vy", "delta_ay"],
+    "output": "six residuals added to corresponding coarse state; state output remains [x,vx,ax,y,vy,ay]",
+    "dropout": 0.08,
+    "direction": "forward_causal"
+  },
+  "training": {
+    "seed": 11,
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "max_epochs": 180,
+    "early_stopping_patience": 25,
+    "min_delta": 0.000001,
+    "gradient_clip_norm": 1.0,
+    "loss": "mean squared error over batch, six states and time",
+    "checkpoint_selection": "minimum validation six-state MSE"
+  },
+  "parameter_count": {
+    "baseline_expected": 619014,
+    "candidate_expected": 627014,
+    "candidate_delta": 8000,
+    "candidate_relative_increase_percent": 1.292
+  },
+  "output_directory": "artifacts/results/synthetic/paper_v4_mamba_improvement_v2/experiment_b_separate_heads_seed11"
+}

@@ -1,0 +1,17 @@
+{
+  "experiment": "F1_train_only_feature_normalization",
+  "status": "planned_not_run",
+  "factor_changed": "input normalization only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "normalization": {
+    "statistics_source": "819 training trajectories only",
+    "apply_to": ["range", "Cartesian position", "measurement differences", "coarse state", "repeated initial state"],
+    "leave_unchanged": ["sin_bearing", "cos_bearing", "wrapped_bearing_difference"],
+    "variance_floor": 1e-8,
+    "validation_test": "reuse frozen train mean/std"
+  },
+  "model_overrides": {},
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "selection_rule": "minimum validation six-state MSE; also report all three validation group RMSEs",
+  "test_access": "after selection is frozen"
+}

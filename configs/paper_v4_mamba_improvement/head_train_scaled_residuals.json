@@ -1,0 +1,15 @@
+{
+  "experiment": "H2_training_scaled_component_residuals",
+  "status": "planned_not_run",
+  "factor_changed": "residual parameterization only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "architecture": {
+    "head_outputs": "normalized residual coordinates multiplied by fixed training-only residual RMS",
+    "scale_source": "coarse_state minus target residual RMS on the 819 training trajectories",
+    "scale_floor": 1e-6,
+    "loss": "original six-state MSE on physical scaled-state predictions"
+  },
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "selection_rule": "minimum validation six-state MSE",
+  "test_access": "after selection is frozen"
+}

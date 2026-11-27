@@ -1,0 +1,93 @@
+{
+  "experiment": "F1_train_only_feature_normalization_five_seed_confirmation_v2",
+  "status": "validation_confirmation",
+  "pilot_config": "configs/paper_v4_mamba_improvement/features_train_only_normalization_seed11.json",
+  "pilot_config_sha256": "72b82dbb559c001c1da75710241d5e51833bbe71d6aa4dec0dd5f081724564ba",
+  "factor_changed": "input feature normalization only; exactly as seed-11 pilot",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "data": {
+    "train_validation_pool": "artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_train_val.pt",
+    "train_validation_pool_sha256": "4ac64b0cd80e14f6ec845f81b81ac9c9392234fd8f986f67380f3608d77a2733",
+    "train_count": 819,
+    "validation_count": 204,
+    "sequence_length": 100,
+    "test_access_during_validation": false
+  },
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "feature_normalization": {
+    "statistics_source": "training split only, independently fit per run using all 819 trajectories and time points",
+    "normalized_token_indices_zero_based": [
+      0,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "preserved_unscaled_token_indices_zero_based": [
+      1,
+      2,
+      6
+    ],
+    "formula": "(feature - train_mean) / max(train_population_std, 1e-4)",
+    "state_estimate_representation": "unchanged physical scaled-state output; normalized values are input features only"
+  },
+  "model": {
+    "input_dim": 21,
+    "embed_dim": 128,
+    "d_state": 16,
+    "d_conv": 4,
+    "expand": 2,
+    "num_layers": 3,
+    "hidden_dim": 256,
+    "dropout": 0.08,
+    "direction": "forward_causal",
+    "parameter_count_expected": 619014
+  },
+  "training": {
+    "seed_protocol": [
+      11,
+      22,
+      33,
+      44,
+      55
+    ],
+    "batch_size": 16,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "max_epochs": 180,
+    "early_stopping_patience": 25,
+    "min_delta": 1e-06,
+    "gradient_clip_norm": 1.0,
+    "loss": "mean squared error over batch, six states and time",
+    "checkpoint_selection": "minimum validation six-state MSE"
+  },
+  "selection_rule": {
+    "validation_guardrails": {
+      "mean_position_rmse_max_relative_increase": 0.01,
+      "mean_velocity_rmse_max_relative_increase": 0.03
+    },
+    "among_candidates_passing_guardrails": "minimize mean validation acceleration RMSE; report mean six-state MSE and all per-seed metrics",
+    "test_use": "only after validation selection manifest and checkpoint hashes are frozen"
+  },
+  "output_directory": "artifacts/results/synthetic/paper_v4_mamba_improvement_v3/experiment_a_feature_norm_five_seed_v2"
+}

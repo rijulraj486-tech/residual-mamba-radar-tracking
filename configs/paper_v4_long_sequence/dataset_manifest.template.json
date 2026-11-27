@@ -1,0 +1,118 @@
+{
+  "format_version": 1,
+  "dataset_id": "paper_v4_radar_T{200_or_400}_fixed_profile_v1",
+  "status": "planned_not_generated",
+  "sequence_length_observations": 200,
+  "dt_seconds": 1.0,
+  "state_order": ["x", "vx", "ax", "y", "vy", "ay"],
+  "state_scale": 1000.0,
+  "observation_order": ["range_scaled_by_1000", "bearing_rad"],
+  "initialization_context": {
+    "generator_option": "return_initialization_observations=true",
+    "stored_tensor_name": "initialization_observations",
+    "shape_per_split": "[N, 2, 2]",
+    "alignment": "context sample 1 equals the first returned observation; initial state uses context samples 0 and 1; context sample 0 is not in the returned sequence"
+  },
+  "simulation": {
+    "motion_model": "2D_discrete_constant_acceleration_with_white_jerk_process_noise",
+    "motion_profile_source": "100-step benchmark fixed profile; explicitly passed; no sequence-length rescaling",
+    "initial_position_min_m": 20000.0,
+    "initial_position_max_m": 30000.0,
+    "initial_velocity_min_mps": -200.0,
+    "initial_velocity_max_mps": 200.0,
+    "initial_acceleration_min_mps2": -3.0,
+    "initial_acceleration_max_mps2": 3.0,
+    "acceleration_rms_q": 1.0,
+    "measurement_type": "RANGE_BEARING",
+    "measurement_noise_distribution": "gaussian",
+    "process_noise_distribution": "gaussian",
+    "range_noise_std_m": 30.0,
+    "bearing_noise_std_degrees": 1.0,
+    "q2_scale": 1.0,
+    "r2_scale": 1.0,
+    "initialization_type": "MEAS",
+    "range_bearing_initial_velocity_from_two_measurements": true,
+    "range_bearing_initial_velocity_clip_mps": 300.0
+  },
+  "splits": {
+    "train": {
+      "trajectory_count": 819,
+      "trajectory_id_namespace": "{dataset_id}/T{length}/train/",
+      "generation_seed": 0,
+      "file": "train.pt",
+      "file_sha256": "",
+      "tensor_shapes": {
+        "state": [819, 6, 200],
+        "observations": [819, 2, 200],
+        "initial_state": [819, 6, 1],
+        "initialization_observations": [819, 2, 2]
+      },
+      "tensor_sha256": {
+        "state": "",
+        "observations": "",
+        "initial_state": "",
+        "initialization_observations": ""
+      },
+      "trajectory_ids": []
+    },
+    "validation": {
+      "trajectory_count": 204,
+      "trajectory_id_namespace": "{dataset_id}/T{length}/validation/",
+      "generation_seed": 0,
+      "file": "validation.pt",
+      "file_sha256": "",
+      "tensor_shapes": {
+        "state": [204, 6, 200],
+        "observations": [204, 2, 200],
+        "initial_state": [204, 6, 1],
+        "initialization_observations": [204, 2, 2]
+      },
+      "tensor_sha256": {
+        "state": "",
+        "observations": "",
+        "initial_state": "",
+        "initialization_observations": ""
+      },
+      "trajectory_ids": []
+    },
+    "test": {
+      "trajectory_count": 1024,
+      "trajectory_id_namespace": "{dataset_id}/T{length}/test/",
+      "generation_seed": 0,
+      "file": "test.pt",
+      "file_sha256": "",
+      "tensor_shapes": {
+        "state": [1024, 6, 200],
+        "observations": [1024, 2, 200],
+        "initial_state": [1024, 6, 1],
+        "initialization_observations": [1024, 2, 2]
+      },
+      "tensor_sha256": {
+        "state": "",
+        "observations": "",
+        "initial_state": "",
+        "initialization_observations": ""
+      },
+      "trajectory_ids": []
+    }
+  },
+  "independence": {
+    "ids_disjoint_across_splits": true,
+    "ids_disjoint_from_other_sequence_lengths": true,
+    "ids_disjoint_from_historical_100_step_pool": true,
+    "historical_100_step_files_modified": false
+  },
+  "artifacts": {
+    "combined_dataset_sha256": "",
+    "manifest_checksum_file": "dataset_manifest.json.sha256",
+    "generation_config_sha256": "",
+    "generator_source_sha256": "",
+    "source_revision": "",
+    "python_version": "",
+    "pytorch_version": "",
+    "cuda_runtime_version": "",
+    "cudnn_version": "",
+    "generation_host": "",
+    "created_at_utc": ""
+  }
+}

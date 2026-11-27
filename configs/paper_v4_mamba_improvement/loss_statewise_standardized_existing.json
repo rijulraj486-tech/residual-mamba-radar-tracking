@@ -1,0 +1,11 @@
+{
+  "experiment": "M1_train_standardized_state_mse",
+  "status": "completed_existing_validation_only_not_promoted",
+  "factor_changed": "loss only",
+  "source_report": "docs/reports/mamba_loss_ablation_v1.md",
+  "formula": "mean_i(MSE(error_i) / population_std_train_i^2)",
+  "statistics_source": "819 training trajectories only",
+  "model_overrides": {},
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "test_evaluated": false
+}

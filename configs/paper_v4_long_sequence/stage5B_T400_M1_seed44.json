@@ -1,0 +1,143 @@
+{
+  "comparison_arm": "matched_length_training",
+  "configuration_provenance": {
+    "derived_from_stage5A_config": "configs/paper_v4_long_sequence/stage5A_T400_M1_seed101.json",
+    "model_and_training_settings_inherited_without_change": true,
+    "permitted_changes": [
+      "experiment_id/status/stage",
+      "confirmation seed streams",
+      "isolated output directory"
+    ],
+    "stage5A_config_sha256": "fb21d726c7e16ab290c25f322a59b569e08eba3b7cc7ff1c65349363eaa55b77"
+  },
+  "data": {
+    "bundle_directory": "artifacts/results/synthetic/paper_v4_long_sequence/T400_fixed_profile_v1",
+    "bundle_manifest": "dataset_manifest.json",
+    "dt_seconds": 1.0,
+    "motion_profile_mode": "fixed_reference",
+    "state_order": [
+      "x",
+      "vx",
+      "ax",
+      "y",
+      "vy",
+      "ay"
+    ],
+    "test_count_forbidden": 1024,
+    "test_split_not_opened": true,
+    "train_count": 819,
+    "train_split": "splits/train.pt",
+    "trajectory_ids_disjoint": true,
+    "validation_count": 204,
+    "validation_split": "splits/validation.pt"
+  },
+  "experiment_id": "paper_v4_long_sequence_stage5B_T400_M1_seed44",
+  "model": {
+    "architecture": "forward_causal_residual_mamba",
+    "d_conv": 4,
+    "d_state": 16,
+    "dropout": 0.08,
+    "embed_dim": 128,
+    "encoder_direction": "forward",
+    "expand": 2,
+    "feature_normalization": {
+      "enabled": true,
+      "normalized_token_indices_zero_based": [
+        0,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "preserved_token_indices_zero_based": [
+        1,
+        2,
+        6
+      ],
+      "statistics_path": "train_only_feature_statistics.json",
+      "statistics_source": "train_split_only",
+      "std_floor": 0.0001
+    },
+    "hidden_dim": 256,
+    "num_layers": 3,
+    "parameter_count_expected": 619014,
+    "state_representation": [
+      "x",
+      "vx",
+      "ax",
+      "y",
+      "vy",
+      "ay"
+    ],
+    "variant": "M1"
+  },
+  "outputs": {
+    "run_directory": "artifacts/results/synthetic/paper_v4_long_sequence/stage5B_matched_length_confirmation_v1/T400_M1_seed44"
+  },
+  "resources": {
+    "batch_size": 16,
+    "device": "cuda:0",
+    "record_peak_allocated_and_reserved_separately": true,
+    "record_training_epoch_wall_time": true,
+    "record_validation_wall_time": true
+  },
+  "sequence_length": 400,
+  "stage": "Phase 3 Stage 5B five-seed matched-length confirmation",
+  "status": "frozen_confirmation_config_before_training",
+  "training": {
+    "batch_size": 16,
+    "batch_size_fallback": false,
+    "checkpoint_selection": "minimum validation six_state_mse_scaled_units",
+    "chunked_training": false,
+    "confirmation_seed": 44,
+    "confirmation_seeds": [
+      11,
+      22,
+      33,
+      44,
+      55
+    ],
+    "dataloader_shuffle_seed": 204044,
+    "early_stopping_patience": 25,
+    "gradient_clip_norm": 1.0,
+    "initialization_seed": 4044,
+    "learning_rate": 0.001,
+    "loss": "mean_squared_error_over_batch_six_states_and_time",
+    "max_epochs": 180,
+    "min_delta": 1e-06,
+    "optimizer": "Adam",
+    "paired_seed_policy": "M0 and M1 at this length/seed share initialization, training/dropout, and data-loader shuffle seeds; the three streams are distinct.",
+    "python_numpy_torch_cuda_seeded": true,
+    "screening_seed": 44,
+    "sequence_truncation": false,
+    "training_random_seed": 104044,
+    "weight_decay": 0.0001
+  },
+  "validation_screening_criteria": {
+    "M1_position_rmse_max_relative_increase": 0.01,
+    "M1_velocity_rmse_max_relative_increase": 0.03,
+    "checkpoint_metric": "minimum validation six-state MSE",
+    "confirmation_gate": "M1 qualifies for five-seed confirmation only if it satisfies both relative RMSE guardrails; M0 is the reference control. Acceleration RMSE and six-state MSE are reported, not used as additional post hoc thresholds.",
+    "reference": "paired same-length M0 run, validation only",
+    "source_document": "docs/reports/paper_v4_mamba_improvement_plan.md",
+    "source_document_sha256": "2484552eaf49eda511fdb2b30b75768f8187c2b032d4d53fb5792c3110d565af",
+    "stability_requirements": [
+      "all training losses finite",
+      "all validation metrics finite",
+      "checkpoint selected from validation only"
+    ]
+  }
+}

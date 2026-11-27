@@ -28,19 +28,27 @@ def wrap_to_2pi(angle):
     return torch.remainder(angle, TWO_PI)
 
 
-def get_motion_profile(sim_params):
+def get_motion_profile(sim_params, mode="sequence_scaled"):
     """
-    Keep the long-context benchmark in the same physical regime as the original
-    100-step setup.
+    Resolve the initial-state and process-noise scales for a sequence.
 
-    With constant-acceleration dynamics, extending the context by 10x increases
-    the velocity-driven displacement by 10x and the acceleration-driven
-    displacement by 100x if we keep the same initial state ranges. That makes
-    the 1000-step trajectories numerically extreme and unfair to models trained
-    on the original regime. We therefore shrink the velocity, acceleration, and
-    process-noise scales as the sequence gets longer.
+    The historic ``sequence_scaled`` policy shrinks velocity by 100/T and
+    acceleration/process-noise scales by (100/T)^2 for T > 100. The opt-in
+    ``fixed_reference`` policy uses the original 100-step values at any T.
     """
-    seq_len = max(float(sim_params.seq_len), 1.0)
+    if mode not in {"sequence_scaled", "fixed_reference"}:
+        raise ValueError(
+            "motion profile mode must be 'sequence_scaled' or 'fixed_reference'"
+        )
+
+    # Keep the historic default policy exactly: profile scales follow seq_len.
+    # The opt-in fixed-reference mode resolves the profile at the reference
+    # horizon without changing the requested simulation sequence length.
+    seq_len = (
+        REFERENCE_SEQ_LEN
+        if mode == "fixed_reference"
+        else max(float(sim_params.seq_len), 1.0)
+    )
     seq_ratio = max(seq_len / REFERENCE_SEQ_LEN, 1.0)
 
     vel_scale = 1.0 / seq_ratio
@@ -71,7 +79,9 @@ def Q_CA_2D(dt, qx, qy):
                             Q_CA_1D(dt, qy))
 
 
-def sample_laplace_like(std_dev_vec: torch.Tensor, num_batch: int, device=None):
+def sample_laplace_like(
+    std_dev_vec: torch.Tensor, num_batch: int, device=None, generator=None
+):
     """
     Sample iid Laplace(0, b) noise with per-dimension std given by std_dev_vec.
     For Laplace(0,b): std = sqrt(2)*b  =>  b = std/sqrt(2)
@@ -82,17 +92,35 @@ def sample_laplace_like(std_dev_vec: torch.Tensor, num_batch: int, device=None):
     b = std / torch.sqrt(torch.tensor(2.0, device=device))
     D = std.numel()
 
-    U = torch.rand(num_batch, D, device=device) - 0.5
+    U = torch.rand(num_batch, D, device=device, generator=generator) - 0.5
     X = -b * torch.sign(U) * torch.log1p(-2.0 * torch.abs(U))
     return X.unsqueeze(-1)                             # [B, D, 1]
 
 
-def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_size=None):
+def generate_synthetic_data(
+    model,
+    sim_params,
+    snr_dB,
+    seq_mul_fact=1,
+    batch_size=None,
+    *,
+    motion_profile_mode="sequence_scaled",
+    generator=None,
+    device=None,
+    return_initialization_observations=False,
+):
 
     num_batch = sim_params.dataset_size if batch_size is None else batch_size
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    else:
+        device = torch.device(device)
+    if generator is not None and torch.device(generator.device) != device:
+        raise ValueError(
+            f"generator device {generator.device} does not match data device {device}"
+        )
 
-    motion_profile = get_motion_profile(sim_params)
+    motion_profile = get_motion_profile(sim_params, mode=motion_profile_mode)
 
     # Initial state values
     pos_min, pos_max = motion_profile["pos_min"], motion_profile["pos_max"]
@@ -159,14 +187,15 @@ def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_siz
 
     # init state
     x_init = torch.zeros(num_batch, model.m, 1, device=device)
-    x_init[:, 0, 0] = pos_min + (pos_max - pos_min) * torch.rand(num_batch, device=device)
-    x_init[:, 1, 0] = vel_min + (vel_max - vel_min) * torch.rand(num_batch, device=device)
-    x_init[:, 2, 0] = accn_min + (accn_max - accn_min) * torch.rand(num_batch, device=device)
-    x_init[:, 3, 0] = pos_min + (pos_max - pos_min) * torch.rand(num_batch, device=device)
-    x_init[:, 4, 0] = vel_min + (vel_max - vel_min) * torch.rand(num_batch, device=device)
-    x_init[:, 5, 0] = accn_min + (accn_max - accn_min) * torch.rand(num_batch, device=device)
+    x_init[:, 0, 0] = pos_min + (pos_max - pos_min) * torch.rand(num_batch, device=device, generator=generator)
+    x_init[:, 1, 0] = vel_min + (vel_max - vel_min) * torch.rand(num_batch, device=device, generator=generator)
+    x_init[:, 2, 0] = accn_min + (accn_max - accn_min) * torch.rand(num_batch, device=device, generator=generator)
+    x_init[:, 3, 0] = pos_min + (pos_max - pos_min) * torch.rand(num_batch, device=device, generator=generator)
+    x_init[:, 4, 0] = vel_min + (vel_max - vel_min) * torch.rand(num_batch, device=device, generator=generator)
+    x_init[:, 5, 0] = accn_min + (accn_max - accn_min) * torch.rand(num_batch, device=device, generator=generator)
 
     init_vec = None
+    init_observations = None
     x_prev = x_init
 
     for t in range(L):
@@ -176,9 +205,18 @@ def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_siz
 
         # process noise
         if PROC_NOISE_DIST.lower() == "gaussian":
-            eq = proc_dist.rsample((num_batch,)).unsqueeze(-1)  # [B,m,1]
+            if generator is None:
+                # Preserve the original global-RNG sampling path by default.
+                eq = proc_dist.rsample((num_batch,)).unsqueeze(-1)  # [B,m,1]
+            else:
+                eps = torch.randn(
+                    num_batch, model.m, device=device, generator=generator
+                )
+                eq = (eps @ proc_dist.scale_tril.transpose(-1, -2)).unsqueeze(-1)
         elif PROC_NOISE_DIST.lower() == "laplace":
-            eq = sample_laplace_like(proc_std_vec, num_batch, device=device)  # [B,m,1]
+            eq = sample_laplace_like(
+                proc_std_vec, num_batch, device=device, generator=generator
+            )  # [B,m,1]
         else:
             raise ValueError(f"Unknown PROC_NOISE_DIST: {PROC_NOISE_DIST}")
 
@@ -191,9 +229,18 @@ def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_siz
         meas_std_vec = torch.sqrt(torch.diag(R)).to(device)  # [n]
 
         if MEAS_NOISE_DIST.lower() == "gaussian":
-            er = meas_dist.rsample((num_batch,)).unsqueeze(-1)  # [B,n,1]
+            if generator is None:
+                # Preserve the original global-RNG sampling path by default.
+                er = meas_dist.rsample((num_batch,)).unsqueeze(-1)  # [B,n,1]
+            else:
+                eps = torch.randn(
+                    num_batch, model.n, device=device, generator=generator
+                )
+                er = (eps @ meas_dist.scale_tril.transpose(-1, -2)).unsqueeze(-1)
         elif MEAS_NOISE_DIST.lower() == "laplace":
-            er = sample_laplace_like(meas_std_vec, num_batch, device=device)  # [B,n,1]
+            er = sample_laplace_like(
+                meas_std_vec, num_batch, device=device, generator=generator
+            )  # [B,n,1]
         else:
             raise ValueError(f"Unknown MEAS_NOISE_DIST: {MEAS_NOISE_DIST}")
 
@@ -209,6 +256,7 @@ def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_siz
 
         # init vector (MEAS) computed once when we have at least t>=1
         if (init_vec is None) and (sim_params.init_type == 'MEAS') and (t >= 1):
+            init_observations = y_seq[:, :, :2].clone()
             init_vec = torch.zeros_like(x_init)
 
             if sim_params.meas_type in ("FULL", "POS_ONLY"):
@@ -249,7 +297,14 @@ def generate_synthetic_data(model, sim_params, snr_dB, seq_mul_fact=1, batch_siz
     x_seq = x_seq[:, :, 1:]
     y_seq = y_seq[:, :, 1:]
 
-    return x_seq, y_seq, init_vec, Q, R
+    result = (x_seq, y_seq, init_vec, Q, R)
+    if return_initialization_observations:
+        if init_observations is None:
+            raise ValueError(
+                "initialization observations are available only with init_type='MEAS'"
+            )
+        return (*result, init_observations)
+    return result
 
 
 def split_data(x_true, y_obs, init_state, train_frac=0.8, val_frac=0.2):

@@ -1,0 +1,10 @@
+{
+  "experiment": "M2_d_state_8",
+  "status": "planned_not_run",
+  "factor_changed": "Mamba state size only",
+  "baseline_config": "configs/paper_v4_mamba_improvement/baseline_reference.json",
+  "model_overrides": {"d_state": 8},
+  "training_overrides": {"seeds": [11, 22, 33, 44, 55]},
+  "selection_rule": "minimum validation six-state MSE",
+  "report": ["parameter_count", "training_seconds", "validation_inference_seconds", "three_group_rmse", "six_state_mse"]
+}
