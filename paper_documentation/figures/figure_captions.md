@@ -1,75 +1,71 @@
 # Figure captions
-## architecture
 
-Implemented M0/M1 architecture. M1 applies training-only normalization to 18 of 21 token features before projection; M0 bypasses that operation.
-## architecture
+Figure numbers below follow the recommended paper sequence. Each produced figure group has one caption shared by its PNG/PDF/SVG exports. Paths are relative to the repository root; `generate_supported_figures.py` is the plotting source for generated plots.
 
-Implemented M0/M1 architecture. M1 applies training-only normalization to 18 of 21 token features before projection; M0 bypasses that operation.
-## dataset_test_quantiles
+## Figure 1 — Research and evaluation pipeline
 
-Stage 2 test pooled-observation p50/p95/p99 quantiles for range, speed, and acceleration magnitude. Log axes; not density plots.
-## radar_geometry_schematic
+Research pipeline from synthetic range-bearing data generation through feature construction, M0/M1 estimation, validation, frozen evaluation, baseline comparison, and statistical audit. Stage labels refer to completed project records; the diagram does not depict an additional experiment.
 
-Schematic of implemented range-bearing geometry. This is not measured radar data; target coordinates are illustrative.
-## research_pipeline
+**Source:** `paper_documentation/figures/source_scripts/generate_supported_figures.py`; stage inventory in `paper_documentation/results/complete_experiment_history.md`.
 
-Research pipeline schematic. Stages refer to completed experiment records; no new inference is represented.
-## stage5b_learning_curves_seed11
+## Figure 2 — Radar geometry schematic
 
-Representative Stage 5B seed 11 training MSE (dashed) and validation six-state MSE (solid), shown by sequence length and variant. No aggregation across seeds.
-## stage6_matched_length_results
+Schematic of the implemented range-bearing observation geometry, with radar origin, target position, range (r), and bearing (	heta). Coordinates are illustrative; this is not measured radar data and axes are not presented as a physical-scale trajectory.
 
-Matched-length Stage 6 test performance. Points and error bars show five-seed mean and sample SD on fixed T=200/T=400 test sets.
-## stage6_temporal_windows
+**Source:** `src/radar_tracking/dynamics/constant_acceleration.py` (`h(x)`); `paper_documentation/figures/source_scripts/generate_supported_figures.py`.
 
-Stage 6 ten-step temporal-window metrics by window start. Solid lines indicate T=200 and dashed lines T=400; shaded bands show ±1 sample SD across seeds.
-## stage7_paired_seed_effects
+## Figure 3 — Causal Residual Mamba architecture
 
-Per-seed paired percent change (M1 relative to M0); points show the five seed pairs and diamonds ± one across-seed sample SD. This spread is not test-trajectory uncertainty.
-## stage8_baseline_acceleration
+M0/M1 share 21-channel feature construction, a 21-to-128 input projection, three forward residual Mamba blocks, and a six-state correction head. M1 applies training-only normalization to 18 token channels before projection; M0 uses the raw constructed features. The output is the coarse state plus the predicted correction.
 
-Stage 8 acceleration RMSE by method class. M0/M1 are matched-length, KalmanNet is T=100-trained transfer, and EKF/UKF are model-informed variants; log scale. Runtime devices and fairness distinctions are in Stage 8 report.
-## architecture
+**Source:** `src/radar_tracking/models/tracker_model.py`, `src/radar_tracking/models/bimamba_encoder.py`, `src/radar_tracking/models/prediction_head.py`, and Stage 5B configs under `configs/paper_v4_long_sequence/`.
 
-Implemented M0/M1 architecture. M1 applies training-only normalization to 18 of 21 token features before projection; M0 bypasses that operation.
-## dataset_test_quantiles
+## Figure 4 — Example test trajectory
 
-Stage 2 test pooled-observation p50/p95/p99 quantiles for range, speed, and acceleration magnitude. Log axes; not density plots.
-## radar_geometry_schematic
+Not produced. No retained per-trajectory model prediction overlay is available; no inference was run for this cleanup.
 
-Schematic of implemented range-bearing geometry. This is not measured radar data; target coordinates are illustrative.
-## research_pipeline
+## Figure 5 — Long-sequence dataset distributions
 
-Research pipeline schematic. Stages refer to completed experiment records; no new inference is represented.
-## stage5b_learning_curves_seed11
+Stage 2 test-set pooled-observation p50, p95, and p99 quantiles of measured radar range (m), target speed (m/s), and acceleration magnitude (m/s²) for T=200 and T=400. Axes are logarithmic. Points summarize quantiles and do not show fitted densities.
 
-Representative Stage 5B seed 11 training MSE (dashed) and validation six-state MSE (solid), shown by sequence length and variant. No aggregation across seeds.
-## stage6_matched_length_results
+**Source data:** `paper_documentation/datasets/dataset_statistics.csv`, originally `artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.json` and `.md`. T=100 is not plotted in this existing figure; its newly recovered statistics are in `paper_documentation/final_manuscript_readiness/T100_distribution_statistics.csv`.
 
-Matched-length Stage 6 test performance. Points and error bars show five-seed mean and sample SD on fixed T=200/T=400 test sets.
-## stage6_temporal_windows
+## Figure 6 — Representative training and validation curves
 
-Stage 6 ten-step temporal-window metrics by window start. Solid lines indicate T=200 and dashed lines T=400; shaded bands show ±1 sample SD across seeds.
-## stage7_paired_seed_effects
+Stage 5B seed 11 train MSE (dashed) and validation six-state MSE (solid) versus epoch for M0 and M1 at T=200 and T=400. MSE is in stored scaled-state squared units; the logarithmic y-axis is shown. This is one representative seed, not a five-seed aggregate.
 
-Per-seed paired percent change (M1 relative to M0); points show the five seed pairs and diamonds ± one across-seed sample SD. This spread is not test-trajectory uncertainty.
-## stage8_baseline_acceleration
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage5B_matched_length_confirmation_v1/T200_M{0,1}_seed11/epoch_log.jsonl` and corresponding `T400_M{0,1}_seed11/epoch_log.jsonl`.
 
-Stage 8 acceleration RMSE by method class. M0/M1 are matched-length, KalmanNet is T=100-trained transfer, and EKF/UKF are model-informed variants; log scale. Runtime devices and fairness distinctions are in Stage 8 report.
-## radar_geometry_schematic
+## Figure 7 — Frozen T=100 checkpoint extrapolation
 
-Schematic of implemented range-bearing geometry. This is not measured radar data; target coordinates are illustrative.
-## research_pipeline
+Stage 4 temporal-window results for frozen T=100-trained M0/M1 checkpoints evaluated at T=200 and T=400: position RMSE (m), velocity RMSE (m/s), acceleration RMSE (m/s²), and six-state MSE (stored scaled-state squared units). This is cross-length extrapolation, not matched-length training. The packaged PNGs reproduce the original Stage 4 v2 plots; PDFs embed the same raster images.
 
-Research pipeline schematic. Stages refer to completed experiment records; no new inference is represented.
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage4_frozen_100_to_long_test_v2/temporal_window_metrics.csv`; source plot files are in its `plots/` directory.
 
-## Unavailable or omitted figures
+## Figure 8 — Matched-length Stage 6 test results
 
-- Example test trajectory: PyTorch absent, so Stage 2 `.pt` tensor was not loaded.
-- Runtime/computational complexity: per-method runtime and device data are retained in tables, but not plotted together because CPU and CUDA timings are not directly comparable.
-- Figure 7 frozen-checkpoint extrapolation and Figure 4 example trajectory: original stage CSVs/plots are available in source artifact paths; this package prioritizes generated matched-length figures. Stage 4 plots remain in the original result directory.
+Full-horizon Stage 6 test position RMSE (m), velocity RMSE (m/s), acceleration RMSE (m/s²), and six-state MSE (stored scaled-state squared units) for M0 and M1 trained at the evaluated length. Points/error bars show the mean and sample SD across five seeds on each fixed test set.
 
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage6_matched_length_test_evaluation_v1/per_seed_test_results.csv` and `aggregate_test_results.csv`.
 
-## Stage 4 frozen extrapolation figures
+## Figure 9 — Paired M0/M1 seed changes
 
-The four `stage4_*` figures are the supplied Stage 4 v2 temporal RMSE/MSE plots, copied byte-for-byte as PNG and embedded in PDF wrappers. Sources: `artifacts/results/synthetic/paper_v4_long_sequence/stage4_frozen_100_to_long_test_v2/plots/`. They show T=100-trained frozen-checkpoint extrapolation at T=200/T=400; see Stage 4 report for legend and protocol.
+Per-seed percentage changes in Stage 6 error, computed as (100(M1-M0)/M0), for position RMSE, velocity RMSE, acceleration RMSE, and six-state MSE. Points show the five matched seed pairs; diamonds and whiskers show mean ± one sample SD across seed pairs. These are not confidence intervals over test trajectories.
+
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage6_matched_length_test_evaluation_v1/per_seed_test_results.csv`; paired summaries are in `stage7_statistical_analysis_v1/paired_seed_statistics.csv` and `confidence_intervals.csv`.
+
+## Figure 10 — Stage 6 temporal-window performance
+
+Stage 6 ten-step-window position RMSE (m), velocity RMSE (m/s), acceleration RMSE (m/s²), and six-state MSE (stored scaled-state squared units) across the full sequence. Solid lines denote T=200; dashed lines denote T=400. Shading is ± one sample SD across five seeds.
+
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage6_matched_length_test_evaluation_v1/temporal_window_metrics.csv`.
+
+## Figure 11 — Stage 8 baseline context
+
+Stage 8 test acceleration RMSE (m/s²; logarithmic axis) for matched-length M0/M1, T=100-trained KalmanNet transfer, and model-informed EKF/UKF policies. Classical policies are shown as deterministic single outcomes; KalmanNet bars summarize its five T=100-trained checkpoint results. EKF/UKF use known dynamics, with oracle-Q/R policies receiving simulator noise covariances. This is an information-stratified accuracy comparison, not a runtime comparison.
+
+**Source data:** `artifacts/results/synthetic/paper_v4_long_sequence/stage8_baseline_comparison_v1/combined_metrics.csv`; fairness distinctions are in `baseline_fairness_protocol.md`.
+
+## Figure 12 — Runtime and model complexity
+
+Not produced as a comparative figure. Runtime and parameter-count records are tabulated, but CPU filter timings, CUDA KalmanNet timings, and imported Stage 6 M0/M1 timings use different protocols and are not directly comparable. See `paper_documentation/final_manuscript_readiness/runtime_protocol_resolution.md` and `paper_documentation/tables/runtime_complexity.csv`.
