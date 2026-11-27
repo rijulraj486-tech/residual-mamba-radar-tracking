@@ -1,0 +1,3 @@
+# Bibliography and citation audit
+
+A repository-wide search found no `.bib` or `.tex` source. The project README, docs, Markdown reports, notebooks, and code should be reviewed for inline citations when manuscript source is prepared, but a complete citation registry cannot be established from the current materials. `NOT VERIFIED FROM AVAILABLE PROJECT ARTIFACTS` applies to full author lists, exact venue/issue/pages, DOI, manuscript citation status, and statement-by-statement citation support. `bibliography_inventory.csv` lists the absence of bibliography files. No references or DOIs were added or inferred.

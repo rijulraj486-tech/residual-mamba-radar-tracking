@@ -1,0 +1,15 @@
+claim,evidence,source_file,result_scope,supporting_figure_or_table,directly_supported,required_qualification
+M1 reduces velocity/acceleration error vs M0 at T=200/400,Stage 6 five paired seeds; Stage 7 tables,Stage 6 report; stage7 statistical CSV,T=200/T=400 fixed synthetic profile,Main results table; paired figure,Directly supported,"Five seeds, fixed test sets; exploratory uncertainty"
+M1 improves T=200 position RMSE,"Stage 6 paired results; only 2/5 seeds improve, CI crosses zero",Stage 7 report / confidence_intervals.csv,T=200,Avoid positive claim,Not supported,Mean -0.66%; interval crosses zero; not equivalence
+M1 has lower position RMSE at T=400,5/5 seed pairs; mean relative change -18.83%,Stage 7 statistical report,T=400 synthetic fixed profile,Results table,Supported within scope,Seed-level exploratory result; fixed test
+Matched-length training is better than T=100 transfer,Stage 4 vs Stage 6 on same test sets; distinct checkpoints,Stage 6 stage4_vs_stage6_comparison.csv,T=200/400,Comparison plot/table,Descriptive support,Not paired training protocol; no causal attribution
+Mamba universally beats Kalman filters,No: Stage 8 calibrated filters outperform learned models on acceleration with exact dynamics,Stage 8 report,Fixed simulator only,Do not claim,Unsupported,Model-informed methods have privileged F/h and sometimes oracle Q/R
+Robust real-world radar tracking,No real radar data,No real-world result artifact,None,Do not claim,Unsupported,No real-world validation
+KalmanNet fails at long lengths generally,Only T=100-trained transfer evaluated,Stage 8 report,T=100→200/400 transfer,Qualified baseline only,Unsupported broadly,Not matched-length KNet
+No internal KalmanNet instability,Missing internal clipping instrumentation,Stage 9 stability audit,Stage 8 outputs finite,Do not claim,Unsupported,Output finite does not establish no internal clipping
+T=400 remains physically realistic,"Distribution report shows median speed 1659 m/s, max range >2.2e6 m",distribution_comparison.md/json,T=400,State simulator caveat,Unsupported,Very high simulated speeds/ranges
+No trajectory-level uncertainty quantified,Stage 7 has no per-trajectory predictions/contributions,Stage 7 report,Fixed test population,Limitations,Directly supported,No bootstrap; CIs over five seeds only
+Stage 8 provenance fully consistent,Stage 6 hash pointer discrepancy documented,Stage 9 audit,Stage 8,Integrity note,False,"One field points Markdown hash, separate provenance JSON hash"
+Model is bidirectional,Encoder code only forward_layers; forward-only,bimamba_encoder.py,architecture,Architecture figure,False,Class/file legacy names are misleading
+No multi-target benchmark in this paper,Paper v4 single-target configs/task,Stage 5B config,Scope,Introduction scope,Supported,Do not generalize from separate project modules
+One motion/noise profile generalizes to other regimes,No other profile tested in these completed stages,Stage 2 manifests,fixed profile only,Do not claim,Unsupported,"Requires future validation, not completed evidence"

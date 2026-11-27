@@ -1,0 +1,3 @@
+# Training environment
+
+Stage 2 manifest records Python 3.12.3, PyTorch 2.4.0+cu121, Linux x86_64, CUDA runtime 12.1; Stage 6/Stage 8 runtime report records NVIDIA GeForce RTX 3060, driver 580.178.04, CUDA 12.1, PyTorch 2.4.0+cu121, Mamba 2.2.0. Project dependency declarations are Python >=3.12,<3.13, torch 2.4.0, NumPy 2.4.4, Matplotlib 3.10.8, mamba-ssm 2.2.0, causal-conv1d 1.4.0, tqdm. Actual exact NumPy/causal-conv1d versions at training time: `NOT VERIFIED FROM AVAILABLE PROJECT ARTIFACTS`. CPU model: `NOT VERIFIED FROM AVAILABLE PROJECT ARTIFACTS`. Logs should be treated as source for run-specific actual environment details.

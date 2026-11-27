@@ -1,0 +1,33 @@
+\begin{table*}[t]
+\centering
+\caption{Stage 8 baseline comparison at T=200; method groups indicate information access}
+\label{tab:stage8T200}
+\scriptsize
+\begin{tabular}{lllllllll}
+\hline
+Model & Method Group & Variant & Seed & Acceleration Rmse Mps2 & Position Rmse M & Velocity Rmse Mps & Six State Mse Scaled Units & Runtime Device \\
+\hline
+M0 & matched\_length\_learned & M0 & 11 & 360.56170654296875 & 584.784912109375 & 217.4947052001953 & 0.08654700219631195 & cuda:0 \\
+M0 & matched\_length\_learned & M0 & 22 & 339.4386901855469 & 595.4431762695312 & 210.11654663085938 & 0.08565336465835571 & cuda:0 \\
+M0 & matched\_length\_learned & M0 & 33 & 331.07977294921875 & 583.490966796875 & 213.26461791992188 & 0.08259289711713791 & cuda:0 \\
+M0 & matched\_length\_learned & M0 & 44 & 363.3417053222656 & 639.9833374023438 & 253.63409423828125 & 0.10098768025636673 & cuda:0 \\
+M0 & matched\_length\_learned & M0 & 55 & 337.5909729003906 & 589.1964111328125 & 211.360595703125 & 0.08429888635873795 & cuda:0 \\
+M1 & matched\_length\_learned & M1 & 11 & 155.45582580566406 & 590.2828979492188 & 124.11097717285156 & 0.06466733664274216 & cuda:0 \\
+M1 & matched\_length\_learned & M1 & 22 & 137.02027893066406 & 591.3837890625 & 136.10113525390625 & 0.06450548768043518 & cuda:0 \\
+M1 & matched\_length\_learned & M1 & 33 & 171.7503204345703 & 584.3017578125 & 138.58163452148438 & 0.06501858681440353 & cuda:0 \\
+M1 & matched\_length\_learned & M1 & 44 & 142.55075073242188 & 599.01416015625 & 117.42164611816406 & 0.06548774987459183 & cuda:0 \\
+M1 & matched\_length\_learned & M1 & 55 & 160.40830993652344 & 605.1912231445312 & 136.96434020996094 & 0.06845775246620178 & cuda:0 \\
+KalmanNet & learned\_cross\_length\_transfer & T100\_checkpoint\_transfer & 11 & 594.5593872070312 & 39296.87109375 & 9594.77734375 & 272.7762451171875 & cuda:0 \\
+KalmanNet & learned\_cross\_length\_transfer & T100\_checkpoint\_transfer & 22 & 565.9417724609375 & 40537.55859375 & 10307.9853515625 & 291.6447448730469 & cuda:0 \\
+KalmanNet & learned\_cross\_length\_transfer & T100\_checkpoint\_transfer & 33 & 798.1843872070312 & 40585.77734375 & 12939.1884765625 & 302.544189453125 & cuda:0 \\
+KalmanNet & learned\_cross\_length\_transfer & T100\_checkpoint\_transfer & 44 & 408.1046142578125 & 40646.89453125 & 9409.771484375 & 290.146728515625 & cuda:0 \\
+KalmanNet & learned\_cross\_length\_transfer & T100\_checkpoint\_transfer & 55 & 497.94049072265625 & 38479.99609375 & 8826.7607421875 & 259.8116149902344 & cuda:0 \\
+EKF & model\_informed\_classical & legacy\_P0\_oracle\_QR &  & 123.89041137695312 & 884.82763671875 & 238.02484130859375 & 0.14248743653297424 & cpu \\
+UKF & model\_informed\_classical & legacy\_P0\_oracle\_QR &  & 20337.140625 & 177312.59375 & 96831.8828125 & 6871.62744140625 & cpu \\
+EKF & model\_informed\_classical & train\_calibrated\_P0\_oracle\_QR &  & 4.9918012619018555 & 544.3790893554688 & 65.8748779296875 & 0.050118837505578995 & cpu \\
+UKF & model\_informed\_classical & train\_calibrated\_P0\_oracle\_QR &  & 4.991355895996094 & 543.7017822265625 & 65.84500885009766 & 0.04999534785747528 & cpu \\
+EKF & model\_informed\_classical & train\_calibrated\_P0\_train\_estimated\_QR &  & 4.991929531097412 & 544.3056030273438 & 65.86016845703125 & 0.05010518804192543 & cpu \\
+UKF & model\_informed\_classical & train\_calibrated\_P0\_train\_estimated\_QR &  & 4.99146842956543 & 543.6408081054688 & 65.8306655883789 & 0.04998398199677467 & cpu \\
+\hline
+\end{tabular}
+\end{table*}

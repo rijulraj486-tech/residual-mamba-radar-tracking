@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering
+\caption{Baseline information access}
+\label{tab:baseline_access}
+\begin{tabular}{lllll}
+\hline
+Method & Training Horizon & Dynamics Known At Inference & Noise Access & Group \\
+\hline
+M0/M1 & matched length & No explicit F/h filter update & no oracle Q/R & learned matched-length \\
+KalmanNet & T=100 & yes, model-assisted through f/h features & not per-step oracle Q/R & cross-length transfer \\
+EKF/UKF oracle\_QR & not applicable deterministic & exact F/h & oracle simulator Q/R & privileged model-informed \\
+EKF/UKF train\_estimated\_QR & not applicable deterministic & exact F/h & train-label-estimated Q/R/P0 & model-informed \\
+\hline
+\end{tabular}
+\end{table*}

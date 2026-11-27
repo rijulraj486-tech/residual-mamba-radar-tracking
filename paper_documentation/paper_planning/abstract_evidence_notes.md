@@ -1,0 +1,3 @@
+# Abstract evidence notes (not an abstract)
+
+Supported content: synthetic range-bearing single-target estimation; forward-only residual Mamba; M0 versus training-only feature normalization M1; matched-length T=200/T=400 five-seed evaluation; M1 shows lower velocity/acceleration and six-state MSE means at both lengths; position difference at T=200 is small and uncertain, while T=400 mean lower. If including comparative baselines, distinguish exact-model EKF/UKF from learned models and KalmanNet T=100 transfer. Abstract should state fixed synthetic setup and avoid significance/real-world robustness unless tightly qualified. Do not report unverified aggregate numbers from memory; use Stage 6/7 tables.

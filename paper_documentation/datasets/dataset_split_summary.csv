@@ -1,0 +1,10 @@
+dataset_id,sequence_length,split,n_trajectories,split_seed,shape_observations,shape_states,source
+paper_v4_radar_T200_fixed_profile_v1,200,test,1024,202611273,"[1024,2,200]","[1024,6,200]",artifacts/results/synthetic/paper_v4_long_sequence/T200_fixed_profile_v1/generation_config.json
+paper_v4_radar_T200_fixed_profile_v1,200,train,819,202611271,"[819,2,200]","[819,6,200]",artifacts/results/synthetic/paper_v4_long_sequence/T200_fixed_profile_v1/generation_config.json
+paper_v4_radar_T200_fixed_profile_v1,200,validation,204,202611272,"[204,2,200]","[204,6,200]",artifacts/results/synthetic/paper_v4_long_sequence/T200_fixed_profile_v1/generation_config.json
+paper_v4_radar_T400_fixed_profile_v1,400,test,1024,202611276,"[1024,2,400]","[1024,6,400]",artifacts/results/synthetic/paper_v4_long_sequence/T400_fixed_profile_v1/generation_config.json
+paper_v4_radar_T400_fixed_profile_v1,400,train,819,202611274,"[819,2,400]","[819,6,400]",artifacts/results/synthetic/paper_v4_long_sequence/T400_fixed_profile_v1/generation_config.json
+paper_v4_radar_T400_fixed_profile_v1,400,validation,204,202611275,"[204,2,400]","[204,6,400]",artifacts/results/synthetic/paper_v4_long_sequence/T400_fixed_profile_v1/generation_config.json
+five_seed_n1024_fixedpool_v1,100,train,819,NOT VERIFIED FROM AVAILABLE PROJECT ARTIFACTS (Python random.shuffle split),"[819,2,100]","[819,6,100]",artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_pool_manifest.json
+five_seed_n1024_fixedpool_v1,100,validation,204,NOT VERIFIED FROM AVAILABLE PROJECT ARTIFACTS (Python random.shuffle split),"[204,2,100]","[204,6,100]",artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_pool_manifest.json
+five_seed_n1024_fixedpool_v1,100,test,1024,9001,"[1024,2,100]","[1024,6,100]",artifacts/results/synthetic/five_seed_n1024_fixedpool_v1/fixed_pool_manifest.json

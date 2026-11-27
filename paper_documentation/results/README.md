@@ -1,0 +1,1 @@
+Result summary reports and exact artifact-source CSV copies are provided here. Per-seed Stage 6, paired Stage 7, Stage 8 combined baseline and Stage 5B validation inputs are also copied under `../tables/`. Files in `artifacts/results/` remain unchanged and authoritative.

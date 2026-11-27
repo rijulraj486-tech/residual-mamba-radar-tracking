@@ -1,0 +1,17 @@
+sequence_length,metric,estimand,unit,n_seed_pairs,estimate,ci_method,confidence_level,ci_lower,ci_upper
+200,position_rmse_m,mean_paired_absolute_difference_M1_minus_M0,m,5,-4.5449951171875,two-sided Student t interval on paired seed differences; df=4,0.95,-31.452074896327094,22.362084661952093
+200,position_rmse_m,mean_paired_percentage_difference_M1_vs_M0,%,5,-0.657906548679175,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-4.939117892324413,3.6233047949660633
+200,velocity_rmse_mps,mean_paired_absolute_difference_M1_minus_M0,m/s,5,-90.53816528320313,two-sided Student t interval on paired seed differences; df=4,0.95,-123.85080234231845,-57.2255282240878
+200,velocity_rmse_mps,mean_paired_percentage_difference_M1_vs_M0,%,5,-40.416790571444906,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-50.54635806165471,-30.287223081235105
+200,acceleration_rmse_mps2,mean_paired_absolute_difference_M1_minus_M0,m/s²,5,-192.96547241210936,two-sided Student t interval on paired seed differences; df=4,0.95,-223.32589604541653,-162.6050487788022
+200,acceleration_rmse_mps2,mean_paired_percentage_difference_M1_vs_M0,%,5,-55.578746881357084,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-62.096195872786055,-49.06129788992811
+200,six_state_mse_scaled_units,mean_paired_absolute_difference_M1_minus_M0,scaled-state units,5,-0.022388583421707152,two-sided Student t interval on paired seed differences; df=4,0.95,-0.032001502672436545,-0.012775664170977757
+200,six_state_mse_scaled_units,mean_paired_percentage_difference_M1_vs_M0,%,5,-25.038668544995414,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-32.78392459636034,-17.293412493630484
+400,position_rmse_m,mean_paired_absolute_difference_M1_minus_M0,m,5,-522.057568359375,two-sided Student t interval on paired seed differences; df=4,0.95,-661.9540117339425,-382.16112498480743
+400,position_rmse_m,mean_paired_percentage_difference_M1_vs_M0,%,5,-18.83485958126012,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-22.996836277535948,-14.672882884984288
+400,velocity_rmse_mps,mean_paired_absolute_difference_M1_minus_M0,m/s,5,-1465.9156127929687,two-sided Student t interval on paired seed differences; df=4,0.95,-1744.839949415938,-1186.9912761699993
+400,velocity_rmse_mps,mean_paired_percentage_difference_M1_vs_M0,%,5,-74.39839611640033,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-81.34488732336304,-67.45190490943763
+400,acceleration_rmse_mps2,mean_paired_absolute_difference_M1_minus_M0,m/s²,5,-1288.8656860351562,two-sided Student t interval on paired seed differences; df=4,0.95,-1519.1635012501156,-1058.5678708201967
+400,acceleration_rmse_mps2,mean_paired_percentage_difference_M1_vs_M0,%,5,-63.551898511060266,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-70.14387995893404,-56.959917063186495
+400,six_state_mse_scaled_units,mean_paired_absolute_difference_M1_minus_M0,scaled-state units,5,-1.634801971912384,two-sided Student t interval on paired seed differences; df=4,0.95,-2.0380165918609245,-1.2315873519638434
+400,six_state_mse_scaled_units,mean_paired_percentage_difference_M1_vs_M0,%,5,-62.41248799515374,two-sided Student t interval on paired per-seed percentage differences; df=4,0.95,-69.192365818137,-55.63261017217047

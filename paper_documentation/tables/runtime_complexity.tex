@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\caption{Runtime and model complexity; device-specific timings}
+\label{tab:runtime}
+\scriptsize
+\begin{tabular}{llllll}
+\hline
+Sequence Length & Method & Parameter Count & Runtime Mean Seconds & Runtime Sd Seconds & Device \\
+\hline
+200 & M0 & 619014 & 0.19108204613342725 & 0.0012555373070474317 & cuda:0, NVIDIA GeForce RTX 3060 \\
+200 & M1 & 619014 & 0.20233908766531386 & 0.0007252827475971795 & cuda:0, NVIDIA GeForce RTX 3060 \\
+400 & M0 & 619014 & 0.2847968185339899 & 0.0005079759570482584 & cuda:0, NVIDIA GeForce RTX 3060 \\
+400 & M1 & 619014 & 0.29591357006963037 & 0.00038662829529812024 & cuda:0, NVIDIA GeForce RTX 3060 \\
+200 & KalmanNet:T100\_checkpoint\_transfer & 107656 & 7.915268700398156 & 0.08998287145362367 & cuda:0 \\
+400 & KalmanNet:T100\_checkpoint\_transfer & 107656 & 15.991220193798654 & 0.2734397146715249 & cuda:0 \\
+200 & EKF:legacy\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 0.19455692199699115 & NOT APPLICABLE/NOT RETAINED & cpu \\
+200 & EKF:train\_calibrated\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 0.18777869200857822 & NOT APPLICABLE/NOT RETAINED & cpu \\
+200 & EKF:train\_calibrated\_P0\_train\_estimated\_QR & deterministic filter; no trainable parameter count & 0.1930452529923059 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & EKF:legacy\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 0.36421005601005163 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & EKF:train\_calibrated\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 0.396931459006737 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & EKF:train\_calibrated\_P0\_train\_estimated\_QR & deterministic filter; no trainable parameter count & 0.400490843996522 & NOT APPLICABLE/NOT RETAINED & cpu \\
+200 & UKF:legacy\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 2.2028941520111402 & NOT APPLICABLE/NOT RETAINED & cpu \\
+200 & UKF:train\_calibrated\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 2.237532195998938 & NOT APPLICABLE/NOT RETAINED & cpu \\
+200 & UKF:train\_calibrated\_P0\_train\_estimated\_QR & deterministic filter; no trainable parameter count & 2.2838307329948293 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & UKF:legacy\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 4.487071151001146 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & UKF:train\_calibrated\_P0\_oracle\_QR & deterministic filter; no trainable parameter count & 4.611647839003126 & NOT APPLICABLE/NOT RETAINED & cpu \\
+400 & UKF:train\_calibrated\_P0\_train\_estimated\_QR & deterministic filter; no trainable parameter count & 4.652219804003835 & NOT APPLICABLE/NOT RETAINED & cpu \\
+\hline
+\end{tabular}
+\end{table*}

@@ -1,0 +1,15 @@
+path,role,exists
+src/radar_tracking/dynamics/constant_acceleration.py,"CA transition, radar observation, Jacobian",True
+src/radar_tracking/data/data_generation.py,synthetic generator and noise,True
+src/radar_tracking/data/independent_dataset.py,independent frozen dataset IO,True
+src/radar_tracking/models/tracker_model.py,single-target token features and residual output,True
+src/radar_tracking/models/bimamba_encoder.py,forward causal residual Mamba blocks,True
+src/radar_tracking/models/prediction_head.py,learned residual head,True
+experiments/paper_v4_long_sequence/stage5a_matched_length_screen.py,"Stage 5A training, M1 feature stats",True
+experiments/paper_v4_long_sequence/stage5b_matched_length_confirmation.py,Stage 5B paired confirmation,True
+experiments/paper_v4_long_sequence/stage6_matched_length_test_evaluation.py,held-out M0/M1 evaluation,True
+experiments/paper_v4_long_sequence/stage7_statistical_analysis.py,paired statistical analysis,True
+experiments/paper_v4_long_sequence/stage8_long_sequence_evaluation.py,long-horizon baseline evaluation,True
+src/radar_tracking/models/ekf.py,EKF implementation,True
+src/radar_tracking/models/ukf.py,UKF implementation,True
+src/radar_tracking/models/kalman_net.py,KalmanNet implementation,True

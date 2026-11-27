@@ -1,0 +1,3 @@
+dataset,T,n_train,n_validation,n_test,dt_seconds,range_bearing,motion_profile,source
+paper_v4_radar_T200_fixed_profile_v1,200,819,204,1024,1,"range / 1000, bearing rad",fixed reference,Stage 2 generation_config.json and manifests
+paper_v4_radar_T400_fixed_profile_v1,400,819,204,1024,1,"range / 1000, bearing rad",fixed reference,Stage 2 generation_config.json and manifests

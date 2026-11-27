@@ -1,0 +1,7 @@
+sequence_length,split,position_radius_m_p50_p95_p99,speed_mps_p50_p95_p99,acceleration_mps2_p50_p95_p99,radar_range_m_p50_p95_p99_max,near_origin_true_samples,near_radar_samples,extreme_range_samples_gt_100km,source
+200,train,43815.5 / 185972.0 / 276109.6,595.44 / 2583.72 / 3732.89,10.323 / 27.818 / 36.428,43816.5 / 185968.7 / 276112.7 / 503705.3,27,25,30098,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md
+200,validation,44721.2 / 178777.1 / 255262.9,626.31 / 2535.20 / 3438.83,10.609 / 26.395 / 35.085,44716.7 / 178800.2 / 255267.2 / 410970.3,0,0,7925,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md
+200,test,44294.2 / 184368.6 / 276638.5,595.52 / 2544.93 / 3679.07,10.370 / 26.955 / 35.184,44294.9 / 184371.1 / 276682.4 / 532729.4,29,27,37982,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md
+400,train,136653.5 / 964284.1 / 1425847.7,1640.80 / 7061.26 / 9825.72,14.808 / 37.487 / 49.929,136652.4 / 964286.0 / 1425822.1 / 2502082.5,18,18,185510,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md
+400,validation,140775.9 / 960713.2 / 1418390.5,1677.59 / 6924.88 / 10063.34,14.534 / 37.727 / 49.702,140778.8 / 960705.2 / 1418340.7 / 3056388.5,2,3,46705,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md
+400,test,137718.1 / 971559.3 / 1443160.1,1659.00 / 7146.13 / 9889.16,14.702 / 37.346 / 47.635,137730.2 / 971567.2 / 1443188.6 / 2231836.5,6,6,231562,artifacts/results/synthetic/paper_v4_long_sequence/distribution_comparison.md

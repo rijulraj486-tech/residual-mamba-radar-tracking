@@ -1,0 +1,3 @@
+model,trainable_parameters,sequence_encoder,embedding_dim,d_state,d_conv,expand,dropout,feature_normalization,source
+M0,619014,3 causal residual Mamba blocks,128,16,4,2,0.08,none,Stage 5B config and run summaries
+M1,619014,3 causal residual Mamba blocks,128,16,4,2,0.08,18 of 21 channels; train-only,Stage 5B config and run summaries

@@ -1,0 +1,5 @@
+# M0 and M1 comparison
+
+M0 is the original feature representation. M1 uses the same feature construction, projection, forward Mamba blocks, prediction head, output/state scale, and parameterization, with train-only normalization applied to the 21 token channels before input projection. M1 normalizes 18 indices `[0,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20]`; preserves raw indices `[1,2,6]`, namely sin(bearing), cos(bearing), and Δbearing. Formula: `(x - train_mean) / max(train_population_std, 1e-4)`. Statistics are computed on training token values only, stored in each M1 run's `train_only_feature_statistics.json` and loaded for inference from the selected run record; validation/test apply the frozen values. State labels and output correction are not normalized. Example T=200 seed 11 values are retained in that run's statistics file; use per-seed artifact for exact values, not as universal constants.
+
+The Stage 5B config provides normalized/preserved indices and std floor; run summaries document training split hash and statistics. Means/stds are not refit on validation/test.
